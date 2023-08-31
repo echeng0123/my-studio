@@ -71,10 +71,14 @@ const genres = [
 		bpm: 110,
 		age_time: 1300,
 		tags: ["medieval", "european"],
-		physId: 1,
-		vstId: 3,
 	},
 ];
 
+// genre junction table for querying later
+const genreJunctions = [
+	{ physId: 1, vstId: 3 },
+	{ physId: 2, vstId: 3 },
+];
+
 // export all
-module.exports = { phys_instr, VST_instr, genres };
+module.exports = { phys_instr, VST_instr, genres, genreJunctions };

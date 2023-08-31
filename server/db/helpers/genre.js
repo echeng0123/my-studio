@@ -1,13 +1,6 @@
 const client = require("../client");
 
-const createGenre = async ({
-	genre_name,
-	bpm,
-	age_time,
-	tags,
-	physId,
-	vstId,
-}) => {
+const createGenre = async ({ genre_name, bpm, age_time, tags }) => {
 	try {
 		const {
 			rows: [genres],
@@ -16,13 +9,11 @@ const createGenre = async ({
                 INSERT INTO genres(genre_name,
                     bpm,
                     age_time,
-                    tags,
-                    physId,
-                    vstId)
-                VALUES($1,$2,$3,$4,$5,$6)
+                    tags)
+                VALUES($1,$2,$3,$4)
                 RETURNING *;
             `,
-			[genre_name, bpm, age_time, tags, physId, vstId]
+			[genre_name, bpm, age_time, tags]
 		);
 		return genres;
 	} catch (error) {

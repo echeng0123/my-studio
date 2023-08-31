@@ -14,9 +14,15 @@ const {
 	getVSTInstrById,
 } = require("./helpers/VST_instr");
 
-const { createGenre, getAllGenres, getGenreById } = require("./helpers/genre");
+const { createGenre, getAllGenre, getGenreById } = require("./helpers/genre");
 
-const { phys_instr, VST_instr, genres } = require("./seedData");
+const {
+	createGenreJunc,
+	getAllGenreJunctions,
+	getGenreJuncById,
+} = require("./helpers/genreJunc");
+
+const { phys_instr, VST_instr, genres, genreJunctions } = require("./seedData");
 
 //Drop Tables for cleanliness
 const dropTables = async () => {
@@ -66,6 +72,11 @@ const createTables = async () => {
             tags TEXT[],
             physId INTEGER REFERENCES phys_instr(phys_id),
             vstId INTEGER REFERENCES VST_instr(VST_id)
+        );
+        CREATE TABLE genreJunctions (
+            genreJunc_id SERIAL PRIMARY KEY,
+            physId INTEGER REFERENCES phys_instr(phys_id) NOT NULL, 
+            vstId INTEGER REFERENCES VST_instr(VST_id) NOT NULL
         );
     `);
 	console.log("Tables built!");
@@ -117,6 +128,21 @@ const createInitialGenre = async () => {
 	}
 };
 
+// Create genre junction table
+const createInitialGenreJunc = async () => {
+	try {
+		//Looping through the "genres" array from seedData
+		for (const genreJunc of genreJunctions) {
+			//Insert each genre into the table
+			await createGenreJunc(genreJunc);
+		}
+		console.log(genreJunctions);
+		console.log("created genre junction table");
+	} catch (error) {
+		throw error;
+	}
+};
+
 //Call all my functions and 'BUILD' my database
 const rebuildDb = async () => {
 	try {
@@ -132,6 +158,7 @@ const rebuildDb = async () => {
 		await createInitialPhysInstr();
 		await createInitialVSTInstr();
 		await createInitialGenre();
+		await createInitialGenreJunc();
 	} catch (error) {
 		console.error(error);
 	} finally {
