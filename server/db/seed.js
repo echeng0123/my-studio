@@ -22,7 +22,15 @@ const {
 	getGenreJuncById,
 } = require("./helpers/genreJunc");
 
-const { phys_instr, VST_instr, genres, genreJunctions } = require("./seedData");
+const { createUser, getAllUsers, getUserById } = require("./helpers/users");
+
+const {
+	phys_instr,
+	VST_instr,
+	genres,
+	genreJunctions,
+	users,
+} = require("./seedData");
 
 //Drop Tables for cleanliness
 const dropTables = async () => {
@@ -32,6 +40,8 @@ const dropTables = async () => {
         DROP TABLE IF EXISTS phys_instr cascade;
         DROP TABLE IF EXISTS VST_instr cascade;
         DROP TABLE IF EXISTS genres cascade;
+        DROP TABLE IF EXISTS genreJunctions cascade;
+        DROP TABLE IF EXISTS users cascade;
         `);
 		console.log("Tables dropped!");
 	} catch (error) {
@@ -77,6 +87,12 @@ const createTables = async () => {
             genreJunc_id SERIAL PRIMARY KEY,
             physId INTEGER REFERENCES phys_instr(phys_id) NOT NULL, 
             vstId INTEGER REFERENCES VST_instr(VST_id) NOT NULL
+        );
+        CREATE TABLE users (
+            user_id SERIAL PRIMARY KEY,
+            username varchar(30) UNIQUE NOT NULL,
+            password varchar(30) NOT NULL,
+            name varchar(255) NOT NULL
         );
     `);
 	console.log("Tables built!");
@@ -143,6 +159,21 @@ const createInitialGenreJunc = async () => {
 	}
 };
 
+// Create user table
+const createInitialUser = async () => {
+	try {
+		//Looping through the "genres" array from seedData
+		for (const user of users) {
+			//Insert each genre into the table
+			await createUser(user);
+		}
+		console.log("users", users);
+		console.log("created user table");
+	} catch (error) {
+		throw error;
+	}
+};
+
 //Call all my functions and 'BUILD' my database
 const rebuildDb = async () => {
 	try {
@@ -159,6 +190,7 @@ const rebuildDb = async () => {
 		await createInitialVSTInstr();
 		await createInitialGenre();
 		await createInitialGenreJunc();
+		await createInitialUser();
 	} catch (error) {
 		console.error(error);
 	} finally {

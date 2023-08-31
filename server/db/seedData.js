@@ -80,5 +80,11 @@ const genreJunctions = [
 	{ physId: 2, vstId: 3 },
 ];
 
+// users
+const users = [
+	{ username: "gisula", password: "gisulaplays", name: "Gisula" },
+	{ username: "crab", password: "crab", name: "Crab" },
+];
+
 // export all
-module.exports = { phys_instr, VST_instr, genres, genreJunctions };
+module.exports = { phys_instr, VST_instr, genres, genreJunctions, users };
