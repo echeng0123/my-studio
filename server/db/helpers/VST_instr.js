@@ -8,23 +8,20 @@ const createVSTInstr = async ({
 	brand,
 	phys_avail,
 	tags,
-	phys_id,
 }) => {
 	try {
-		console.log("entering createPhysInstr");
 		const {
-			rows: [phys_instr],
+			rows: [VST_instr],
 		} = await client.query(
 			`
-                INSERT INTO phys_instr(instr_name,
+                INSERT INTO VST_instr(instr_name,
                     instr_family,
                     instr_category,
                     engine,
                     brand,
                     phys_avail,
-                    tags,
-                    phys_id)
-                VALUES($1,$2,$3,$4,$5,$6,$7,$8)
+                    tags)
+                VALUES($1,$2,$3,$4,$5,$6,$7)
                 RETURNING *;
             `,
 			[
@@ -35,10 +32,9 @@ const createVSTInstr = async ({
 				brand,
 				phys_avail,
 				tags,
-				phys_id ? phys_id : 999,
 			]
 		);
-		return phys_instr;
+		return VST_instr;
 	} catch (error) {
 		throw error;
 	}
@@ -64,7 +60,7 @@ const getVSTInstrById = async (VSTInstrId) => {
 			`
                 SELECT *
                 FROM VST_instr
-                WHERE VST_instr_id =${VSTInstrId};
+                WHERE VST_id =${VSTInstrId};
             `
 		);
 		console.log("VST_instr is: ", VST_instr);

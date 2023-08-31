@@ -7,10 +7,9 @@ const createPhysInstr = async ({
 	art_type,
 	vst_avail,
 	tags,
-	vst_id,
+	VST_id,
 }) => {
 	try {
-		console.log("entering createPhysInstr");
 		const {
 			rows: [phys_instr],
 		} = await client.query(
@@ -21,7 +20,7 @@ const createPhysInstr = async ({
                     art_type,
                     vst_avail,
                     tags,
-                    vst_id)
+                    VST_id)
                 VALUES($1,$2,$3,$4,$5,$6,$7)
                 RETURNING *;
             `,
@@ -32,7 +31,7 @@ const createPhysInstr = async ({
 				art_type,
 				vst_avail,
 				tags,
-				vst_id ? vst_id : 999,
+				VST_id ? VST_id : 999,
 			]
 		);
 		return phys_instr;

@@ -10,7 +10,7 @@ const phys_instr = [
 		art_type: "bowed",
 		vst_avail: true,
 		tags: [],
-		vst_id: 42,
+		VST_id: 42,
 	},
 	{
 		instr_name: "piano",
@@ -19,7 +19,7 @@ const phys_instr = [
 		art_type: "pressed",
 		vst_avail: true,
 		tags: [],
-		vst_id: 144,
+		VST_id: 144,
 	},
 	{
 		instr_name: "electric guitar",
@@ -33,7 +33,7 @@ const phys_instr = [
 
 // virtual instruments
 
-const vst_instr = [
+const VST_instr = [
 	{
 		instr_name: "Joshua Bell Violin",
 		instr_family: "strings",
@@ -42,7 +42,6 @@ const vst_instr = [
 		brand: "Embertone",
 		phys_avail: true,
 		tags: [],
-		phys_id: 28,
 	},
 	{
 		instr_name: "India Library",
@@ -52,7 +51,6 @@ const vst_instr = [
 		brand: "Native Instruments",
 		phys_avail: true,
 		tags: ["south asian"],
-		phys_id: 19,
 	},
 	{
 		instr_name: "Rinascimento",
@@ -62,8 +60,20 @@ const vst_instr = [
 		brand: "FluffyAudio",
 		phys_avail: true,
 		tags: ["european"],
-		phys_id: 25,
 	},
 ];
 
-module.exports = { phys_instr, vst_instr };
+// genres
+
+const genres = [
+	{
+		genre_name: "Medieval Europe",
+		bpm: 110,
+		age_time: 1300,
+		tags: ["medieval", "european"],
+		physId: 1,
+		vstId: 3,
+	},
+];
+
+const genre = (module.exports = { phys_instr, VST_instr, genres });
