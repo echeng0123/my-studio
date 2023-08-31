@@ -76,4 +76,5 @@ const genres = [
 	},
 ];
 
-const genre = (module.exports = { phys_instr, VST_instr, genres });
+// export all
+module.exports = { phys_instr, VST_instr, genres };
