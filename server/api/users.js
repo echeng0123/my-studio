@@ -33,4 +33,24 @@ router.get("/:userId", async (req, res, next) => {
 	}
 });
 
+// POST - /api/users - create a new user
+router.post("/", async (req, res, next) => {
+	try {
+		const user = await createUser(req.body);
+		res.send(user);
+	} catch (error) {
+		next(error);
+	}
+});
+
+// PUT - /api/users/:userId - update a user
+router.put("/:userId", async (req, res, next) => {
+	try {
+		const user = await updateUser(req.params.userId, req.body);
+		res.send(user);
+	} catch (error) {
+		next(error);
+	}
+});
+
 module.exports = router;

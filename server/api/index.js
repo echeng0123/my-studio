@@ -1,4 +1,4 @@
-// main routing service
+// main routing service, building routes here
 
 const express = require("express");
 const router = express.Router();
@@ -19,5 +19,8 @@ router.use("/vst_instr", require("./vst_instr"));
 
 // ROUTER: /api/genres
 router.use("/genres", require("./genres"));
+
+// ROUTER: /api/genresJunctions
+router.use("/genreJunctions", require("./genreJunctions"));
 
 module.exports = router;

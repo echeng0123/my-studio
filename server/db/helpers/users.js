@@ -49,4 +49,27 @@ const getUserById = async (UserId) => {
 	}
 };
 
-module.exports = { createUser, getAllUsers, getUserById };
+const updateUser = async (userId, body) => {
+	try {
+		console.log("entered updateUser");
+		console.log("here's the body ", body);
+		console.log("userId", userId);
+		console.log("body username", body.username);
+		console.log("body name", body.name);
+
+		const { rows } = await client.query(
+			`
+                UPDATE users
+                SET username = '${body.username}', password = '${body.password}', name = '${body.name}'
+                WHERE user_id = ${userId}
+                RETURNING *;
+            `
+		);
+		console.log("updated user", rows);
+		return rows;
+	} catch (error) {
+		throw error;
+	}
+};
+
+module.exports = { createUser, getAllUsers, getUserById, updateUser };

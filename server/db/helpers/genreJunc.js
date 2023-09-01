@@ -43,7 +43,6 @@ const getGenreJuncById = async (GenreJuncId) => {
                 WHERE genreJunc_id =${GenreJuncId};
             `
 		);
-		console.log("genre Junctions", genreJunctions);
 		return genreJunctions;
 	} catch (error) {
 		throw error;
