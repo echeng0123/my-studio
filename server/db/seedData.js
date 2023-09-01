@@ -11,6 +11,7 @@ const phys_instr = [
 		vst_avail: true,
 		tags: [],
 		VST_id: 42,
+		userId: 1,
 	},
 	{
 		instr_name: "piano",
@@ -20,6 +21,7 @@ const phys_instr = [
 		vst_avail: true,
 		tags: [],
 		VST_id: 144,
+		userId: 1,
 	},
 	{
 		instr_name: "electric guitar",
@@ -28,6 +30,7 @@ const phys_instr = [
 		art_type: "plucked",
 		vst_avail: true,
 		tags: [],
+		userId: 1,
 	},
 ];
 
@@ -42,6 +45,7 @@ const VST_instr = [
 		brand: "Embertone",
 		phys_avail: true,
 		tags: [],
+		userId: 1,
 	},
 	{
 		instr_name: "India Library",
@@ -51,6 +55,7 @@ const VST_instr = [
 		brand: "Native Instruments",
 		phys_avail: true,
 		tags: ["south asian"],
+		userId: 1,
 	},
 	{
 		instr_name: "Rinascimento",
@@ -60,6 +65,7 @@ const VST_instr = [
 		brand: "FluffyAudio",
 		phys_avail: true,
 		tags: ["european"],
+		userId: 1,
 	},
 ];
 

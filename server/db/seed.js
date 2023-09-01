@@ -54,6 +54,12 @@ const dropTables = async () => {
 const createTables = async () => {
 	console.log("Building tables...");
 	await client.query(`
+        CREATE TABLE users (
+            user_id SERIAL PRIMARY KEY,
+            username varchar(30) UNIQUE NOT NULL,
+            password varchar(30) NOT NULL,
+            name varchar(255) NOT NULL
+        );
         CREATE TABLE phys_instr (
             phys_id SERIAL PRIMARY KEY,
             instr_name varchar(255) NOT NULL,
@@ -62,7 +68,8 @@ const createTables = async () => {
             art_type varchar(255) NOT NULL,
             VST_avail BOOLEAN NOT NULL,
             tags TEXT[],
-            VST_id INTEGER NOT NULL
+            VST_id INTEGER NOT NULL,
+            userId INTEGER REFERENCES users(user_id) NOT NULL
         );
         CREATE TABLE VST_instr (
             VST_id SERIAL PRIMARY KEY,
@@ -72,7 +79,8 @@ const createTables = async () => {
             engine varchar(255) NOT NULL,
             brand varchar(255) NOT NULL,
             phys_avail BOOLEAN NOT NULL,
-            tags TEXT[]
+            tags TEXT[],
+            userId INTEGER REFERENCES users(user_id) NOT NULL
         );
         CREATE TABLE genres (
             genre_id SERIAL PRIMARY KEY,
@@ -87,12 +95,6 @@ const createTables = async () => {
             genreJunc_id SERIAL PRIMARY KEY,
             physId INTEGER REFERENCES phys_instr(phys_id) NOT NULL, 
             vstId INTEGER REFERENCES VST_instr(VST_id) NOT NULL
-        );
-        CREATE TABLE users (
-            user_id SERIAL PRIMARY KEY,
-            username varchar(30) UNIQUE NOT NULL,
-            password varchar(30) NOT NULL,
-            name varchar(255) NOT NULL
         );
     `);
 	console.log("Tables built!");
@@ -186,11 +188,11 @@ const rebuildDb = async () => {
 
 		//Generating starting data
 		console.log("starting to seed...");
+		await createInitialUser();
 		await createInitialPhysInstr();
 		await createInitialVSTInstr();
 		await createInitialGenre();
 		await createInitialGenreJunc();
-		await createInitialUser();
 	} catch (error) {
 		console.error(error);
 	} finally {

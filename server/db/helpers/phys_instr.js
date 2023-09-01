@@ -8,6 +8,7 @@ const createPhysInstr = async ({
 	vst_avail,
 	tags,
 	VST_id,
+	userId,
 }) => {
 	try {
 		const {
@@ -20,8 +21,8 @@ const createPhysInstr = async ({
                     art_type,
                     vst_avail,
                     tags,
-                    VST_id)
-                VALUES($1,$2,$3,$4,$5,$6,$7)
+                    VST_id, userId)
+                VALUES($1,$2,$3,$4,$5,$6,$7,$8)
                 RETURNING *;
             `,
 			[
@@ -32,6 +33,7 @@ const createPhysInstr = async ({
 				vst_avail,
 				tags,
 				VST_id ? VST_id : 999,
+				userId,
 			]
 		);
 		return phys_instr;

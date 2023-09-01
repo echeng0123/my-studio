@@ -8,6 +8,7 @@ const createVSTInstr = async ({
 	brand,
 	phys_avail,
 	tags,
+	userId,
 }) => {
 	try {
 		const {
@@ -20,8 +21,8 @@ const createVSTInstr = async ({
                     engine,
                     brand,
                     phys_avail,
-                    tags)
-                VALUES($1,$2,$3,$4,$5,$6,$7)
+                    tags, userId)
+                VALUES($1,$2,$3,$4,$5,$6,$7,$8)
                 RETURNING *;
             `,
 			[
@@ -32,6 +33,7 @@ const createVSTInstr = async ({
 				brand,
 				phys_avail,
 				tags,
+				userId,
 			]
 		);
 		return VST_instr;
