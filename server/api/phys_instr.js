@@ -33,4 +33,24 @@ router.get("/:PhysInstrId", async (req, res, next) => {
 	}
 });
 
+// POST - /api/phys_instr - create a new physical instrument
+router.post("/", async (req, res, next) => {
+	try {
+		const user = await createPhysInstr(req.body);
+		res.send(user);
+	} catch (error) {
+		next(error);
+	}
+});
+
+// PUT - /api/phys_instr/:PhysInstrId - update a physical instrument
+router.put("/:PhysInstrId", async (req, res, next) => {
+	try {
+		const phys_instr = await updatePhysInstr(req.params.PhysInstrId, req.body);
+		res.send(phys_instr);
+	} catch (error) {
+		next(error);
+	}
+});
+
 module.exports = router;

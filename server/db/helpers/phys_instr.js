@@ -72,4 +72,33 @@ const getPhysInstrById = async (PhysInstrId) => {
 	}
 };
 
-module.exports = { createPhysInstr, getAllPhysInstr, getPhysInstrById };
+const updatePhysInstr = async (PhysInstrId, body) => {
+	try {
+		console.log("physInstrId", PhysInstrId);
+		console.log("tags", body.tags);
+		const { rows } = await client.query(
+			`
+                UPDATE phys_instr
+                SET instr_name = '${body.instr_name}', instr_family = '${body.instr_family}', instr_category = '${body.instr_category}',
+                art_type = '${body.art_type}',
+                VST_avail = ${body.VST_avail},
+                tags = '{${body.tags}}',
+                VST_id = '${body.VST_id}',
+                userId = '${body.userId}'
+                WHERE phys_id = ${PhysInstrId}
+                RETURNING *;
+            `
+		);
+		console.log("rows", rows);
+		return rows;
+	} catch (error) {
+		throw error;
+	}
+};
+
+module.exports = {
+	createPhysInstr,
+	getAllPhysInstr,
+	getPhysInstrById,
+	updatePhysInstr,
+};

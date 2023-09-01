@@ -51,12 +51,6 @@ const getUserById = async (UserId) => {
 
 const updateUser = async (userId, body) => {
 	try {
-		console.log("entered updateUser");
-		console.log("here's the body ", body);
-		console.log("userId", userId);
-		console.log("body username", body.username);
-		console.log("body name", body.name);
-
 		const { rows } = await client.query(
 			`
                 UPDATE users
@@ -65,7 +59,6 @@ const updateUser = async (userId, body) => {
                 RETURNING *;
             `
 		);
-		console.log("updated user", rows);
 		return rows;
 	} catch (error) {
 		throw error;
