@@ -20,10 +20,11 @@ const createUser = async ({ username, password, name }) => {
 
 const getAllUsers = async () => {
 	try {
+		console.log("entered getAllUsers");
 		const { rows } = await client.query(`
-            SELECT *
-            FROM users;
-        `);
+		    SELECT * FROM users;
+		`);
+		console.log("made it past client query");
 		return rows;
 	} catch (error) {
 		throw error;

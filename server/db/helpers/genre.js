@@ -36,7 +36,7 @@ const getAllGenres = async () => {
 const getGenreById = async (GenreId) => {
 	try {
 		const {
-			rows: [genres],
+			rows: [genre],
 		} = await client.query(
 			`
                 SELECT *
@@ -44,8 +44,8 @@ const getGenreById = async (GenreId) => {
                 WHERE genre_id =${GenreId};
             `
 		);
-		console.log("genres", genres);
-		return genre_instr;
+		console.log("genres", genre);
+		return genre;
 	} catch (error) {
 		throw error;
 	}

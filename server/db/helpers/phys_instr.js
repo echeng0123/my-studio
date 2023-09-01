@@ -62,7 +62,7 @@ const getPhysInstrById = async (PhysInstrId) => {
 			`
                 SELECT *
                 FROM phys_instr
-                WHERE phys_instr_id =${PhysInstrId};
+                WHERE phys_id =${PhysInstrId};
             `
 		);
 		console.log("phys_instr is: ", phys_instr);
