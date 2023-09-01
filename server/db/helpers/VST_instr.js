@@ -72,4 +72,31 @@ const getVSTInstrById = async (VSTInstrId) => {
 	}
 };
 
-module.exports = { createVSTInstr, getAllVSTInstr, getVSTInstrById };
+const updateVSTInstr = async (VSTInstrId, body) => {
+	try {
+		const { rows } = await client.query(
+			`
+                UPDATE VST_instr
+                SET instr_name = '${body.instr_name}', instr_family = '${body.instr_family}', instr_category = '${body.instr_category}',
+                engine = '${body.engine}',
+                brand = '${body.brand}',
+                phys_avail = ${body.phys_avail},
+                tags = '{${body.tags}}',
+                userId = '${body.userId}'
+                WHERE VST_id = ${VSTInstrId}
+                RETURNING *;
+            `
+		);
+		console.log("rows", rows);
+		return rows;
+	} catch (error) {
+		throw error;
+	}
+};
+
+module.exports = {
+	createVSTInstr,
+	getAllVSTInstr,
+	getVSTInstrById,
+	updateVSTInstr,
+};

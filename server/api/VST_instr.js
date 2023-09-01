@@ -33,4 +33,24 @@ router.get("/:VSTInstrId", async (req, res, next) => {
 	}
 });
 
+// POST - /api/VST_instr - create a new virtual instrument
+router.post("/", async (req, res, next) => {
+	try {
+		const user = await createVSTInstr(req.body);
+		res.send(user);
+	} catch (error) {
+		next(error);
+	}
+});
+
+// PUT - /api/VST_instr/:VSTInstrId - update a virtual instrument
+router.put("/:VSTInstrId", async (req, res, next) => {
+	try {
+		const VST_instr = await updateVSTInstr(req.params.VSTInstrId, req.body);
+		res.send(VST_instr);
+	} catch (error) {
+		next(error);
+	}
+});
+
 module.exports = router;
