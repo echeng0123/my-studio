@@ -74,8 +74,6 @@ const getPhysInstrById = async (PhysInstrId) => {
 
 const updatePhysInstr = async (PhysInstrId, body) => {
 	try {
-		console.log("physInstrId", PhysInstrId);
-		console.log("tags", body.tags);
 		const { rows } = await client.query(
 			`
                 UPDATE phys_instr
@@ -89,7 +87,6 @@ const updatePhysInstr = async (PhysInstrId, body) => {
                 RETURNING *;
             `
 		);
-		console.log("rows", rows);
 		return rows;
 	} catch (error) {
 		throw error;

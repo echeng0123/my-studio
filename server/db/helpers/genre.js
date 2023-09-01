@@ -51,4 +51,26 @@ const getGenreById = async (GenreId) => {
 	}
 };
 
-module.exports = { createGenre, getAllGenres, getGenreById };
+const updateGenre = async (GenreId, body) => {
+	try {
+		console.log("body is", body);
+		const { rows } = await client.query(
+			`
+                UPDATE genres
+                SET genre_name = '${body.genre_name}', 
+                bpm = ${body.bpm}, 
+                age_time = ${body.age_time},
+                tags = '{${body.tags}}',
+                physId = '${body.phys_id}',
+                vstId = '${body.VST_id}'
+                WHERE genre_id = ${GenreId}
+                RETURNING *;
+            `
+		);
+		return rows;
+	} catch (error) {
+		throw error;
+	}
+};
+
+module.exports = { createGenre, getAllGenres, getGenreById, updateGenre };
