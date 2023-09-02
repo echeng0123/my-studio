@@ -7,6 +7,7 @@ const createPhysInstr = async ({
 	art_type,
 	vst_avail,
 	tags,
+	image_URL,
 	VST_id,
 	userId,
 }) => {
@@ -21,8 +22,9 @@ const createPhysInstr = async ({
                     art_type,
                     vst_avail,
                     tags,
+                    image_URL,
                     VST_id, userId)
-                VALUES($1,$2,$3,$4,$5,$6,$7,$8)
+                VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)
                 RETURNING *;
             `,
 			[
@@ -32,6 +34,7 @@ const createPhysInstr = async ({
 				art_type,
 				vst_avail,
 				tags,
+				image_URL,
 				VST_id ? VST_id : 999,
 				userId,
 			]
@@ -48,6 +51,7 @@ const getAllPhysInstr = async () => {
             SELECT *
             FROM phys_instr;
         `);
+		console.log("rows", rows);
 		return rows;
 	} catch (error) {
 		throw error;
@@ -81,6 +85,7 @@ const updatePhysInstr = async (PhysInstrId, body) => {
                 art_type = '${body.art_type}',
                 VST_avail = ${body.VST_avail},
                 tags = '{${body.tags}}',
+                image_URL = '${body.image_URL}',
                 VST_id = '${body.VST_id}',
                 userId = '${body.userId}'
                 WHERE phys_id = ${PhysInstrId}

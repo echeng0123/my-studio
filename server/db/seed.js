@@ -68,6 +68,7 @@ const createTables = async () => {
             art_type varchar(255) NOT NULL,
             VST_avail BOOLEAN NOT NULL,
             tags TEXT[],
+            image_URL varchar(255),
             VST_id INTEGER NOT NULL,
             userId INTEGER REFERENCES users(user_id) NOT NULL
         );
@@ -80,6 +81,7 @@ const createTables = async () => {
             brand varchar(255) NOT NULL,
             phys_avail BOOLEAN NOT NULL,
             tags TEXT[],
+            image_URL varchar(255),
             userId INTEGER REFERENCES users(user_id) NOT NULL
         );
         CREATE TABLE genres (

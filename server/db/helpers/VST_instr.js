@@ -8,6 +8,7 @@ const createVSTInstr = async ({
 	brand,
 	phys_avail,
 	tags,
+	image_URL,
 	userId,
 }) => {
 	try {
@@ -21,7 +22,7 @@ const createVSTInstr = async ({
                     engine,
                     brand,
                     phys_avail,
-                    tags, userId)
+                    tags, image_URL, userId)
                 VALUES($1,$2,$3,$4,$5,$6,$7,$8)
                 RETURNING *;
             `,
@@ -33,6 +34,7 @@ const createVSTInstr = async ({
 				brand,
 				phys_avail,
 				tags,
+				image_URL,
 				userId,
 			]
 		);
@@ -82,6 +84,7 @@ const updateVSTInstr = async (VSTInstrId, body) => {
                 brand = '${body.brand}',
                 phys_avail = ${body.phys_avail},
                 tags = '{${body.tags}}',
+                image_URL = '${body.image_URL}',
                 userId = '${body.userId}'
                 WHERE VST_id = ${VSTInstrId}
                 RETURNING *;
