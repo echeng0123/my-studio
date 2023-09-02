@@ -20,11 +20,9 @@ const createUser = async ({ username, password, name }) => {
 
 const getAllUsers = async () => {
 	try {
-		console.log("entered getAllUsers");
 		const { rows } = await client.query(`
 		    SELECT * FROM users;
 		`);
-		console.log("made it past client query");
 		return rows;
 	} catch (error) {
 		throw error;
@@ -42,7 +40,6 @@ const getUserById = async (UserId) => {
                 WHERE user_id =${UserId};
             `
 		);
-		console.log("Users", users);
 		return users;
 	} catch (error) {
 		throw error;
@@ -65,4 +62,24 @@ const updateUser = async (userId, body) => {
 	}
 };
 
-module.exports = { createUser, getAllUsers, getUserById, updateUser };
+const deleteUser = async (userId) => {
+	try {
+		const { rows } = await client.query(
+			`
+            DELETE FROM users
+            WHERE user_id = ${userId}
+            RETURNING *;
+            `
+		);
+	} catch (error) {
+		throw error;
+	}
+};
+
+module.exports = {
+	createUser,
+	getAllUsers,
+	getUserById,
+	updateUser,
+	deleteUser,
+};

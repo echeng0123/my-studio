@@ -53,4 +53,14 @@ router.put("/:userId", async (req, res, next) => {
 	}
 });
 
+// DELETE - /api/users/:userId - delete a user
+router.delete("/:userId", async (req, res, next) => {
+	try {
+		const user = await deleteUser(req.params.userId);
+		res.send(user);
+	} catch (error) {
+		next(error);
+	}
+});
+
 module.exports = router;
