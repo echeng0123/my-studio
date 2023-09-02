@@ -53,4 +53,14 @@ router.put("/:VSTInstrId", async (req, res, next) => {
 	}
 });
 
+// DELETE - /api/VST_instr/:VSTInstrId - delete a VSTInstr
+router.delete("/:VSTInstrId", async (req, res, next) => {
+	try {
+		const VSTInstr = await deleteVSTInstr(req.params.VSTInstrId);
+		res.send(VSTInstr);
+	} catch (error) {
+		next(error);
+	}
+});
+
 module.exports = router;

@@ -73,4 +73,24 @@ const updateGenre = async (GenreId, body) => {
 	}
 };
 
-module.exports = { createGenre, getAllGenres, getGenreById, updateGenre };
+const deleteGenre = async (genreId) => {
+	try {
+		const { rows } = await client.query(
+			`
+            DELETE FROM genres
+            WHERE Genre_id = ${genreId}
+            RETURNING *;
+            `
+		);
+	} catch (error) {
+		throw error;
+	}
+};
+
+module.exports = {
+	createGenre,
+	getAllGenres,
+	getGenreById,
+	updateGenre,
+	deleteGenre,
+};

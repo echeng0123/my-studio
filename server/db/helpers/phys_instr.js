@@ -93,9 +93,24 @@ const updatePhysInstr = async (PhysInstrId, body) => {
 	}
 };
 
+const deletePhysInstr = async (PhysInstrId) => {
+	try {
+		const { rows } = await client.query(
+			`
+            DELETE FROM phys_instr
+            WHERE phys_id = ${PhysInstrId}
+            RETURNING *;
+            `
+		);
+	} catch (error) {
+		throw error;
+	}
+};
+
 module.exports = {
 	createPhysInstr,
 	getAllPhysInstr,
 	getPhysInstrById,
 	updatePhysInstr,
+	deletePhysInstr,
 };

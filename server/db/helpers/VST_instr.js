@@ -94,9 +94,24 @@ const updateVSTInstr = async (VSTInstrId, body) => {
 	}
 };
 
+const deleteVSTInstr = async (VSTInstrId) => {
+	try {
+		const { rows } = await client.query(
+			`
+            DELETE FROM VST_instr
+            WHERE VST_id = ${VSTInstrId}
+            RETURNING *;
+            `
+		);
+	} catch (error) {
+		throw error;
+	}
+};
+
 module.exports = {
 	createVSTInstr,
 	getAllVSTInstr,
 	getVSTInstrById,
 	updateVSTInstr,
+	deleteVSTInstr,
 };

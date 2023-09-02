@@ -53,4 +53,14 @@ router.put("/:PhysInstrId", async (req, res, next) => {
 	}
 });
 
+// DELETE - /api/phys_instr/:PhysInstrId - delete a physical instrument
+router.delete("/:PhysInstrId", async (req, res, next) => {
+	try {
+		const physInstr = await deletePhysInstr(req.params.PhysInstrId);
+		res.send(physInstr);
+	} catch (error) {
+		next(error);
+	}
+});
+
 module.exports = router;

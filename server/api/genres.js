@@ -53,4 +53,14 @@ router.put("/:GenreId", async (req, res, next) => {
 	}
 });
 
+// DELETE - /api/genres/:GenreId - delete a genre
+router.delete("/:GenreId", async (req, res, next) => {
+	try {
+		const genre = await deleteGenre(req.params.GenreId);
+		res.send(genre);
+	} catch (error) {
+		next(error);
+	}
+});
+
 module.exports = router;
