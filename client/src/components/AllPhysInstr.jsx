@@ -73,6 +73,12 @@ export default function AllPhysInstr() {
 									<h5>Family: {physInstr.instr_family}</h5>
 									<h5>Articulation Type: {physInstr.art_type}</h5>
 									<h5>VST Available?: {physInstr.vst_avail ? "Yes" : "No"}</h5>
+									<h5>
+										Tags:{" "}
+										{physInstr.tags[0]
+											? JSON.stringify(physInstr.tags)
+											: "None"}
+									</h5>
 								</div>
 							</>
 						);
