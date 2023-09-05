@@ -6,9 +6,6 @@ const router = express.Router();
 const {
 	getAllGenreJunctions,
 	getGenreJuncById,
-	createGenreJunc,
-	updateGenreJunc,
-	deleteGenreJunc,
 } = require("../db/helpers/genreJunc");
 
 // GET - /api/genrejunctions - get all info from genre junction table

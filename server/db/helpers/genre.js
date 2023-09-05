@@ -53,7 +53,6 @@ const getGenreById = async (GenreId) => {
 
 const updateGenre = async (GenreId, body) => {
 	try {
-		console.log("body is", body);
 		const { rows } = await client.query(
 			`
                 UPDATE genres
