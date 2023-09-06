@@ -5,6 +5,11 @@
   text-align: center;
 }
 
+a {
+    padding: 1rem;
+    margin: 1rem;
+}
+
 #app-section{
     border: 2px solid red;
     margin: 1rem;
@@ -51,6 +56,36 @@
 }
 
 #phys-instr-card{
+    border: 2px solid rgb(249, 151, 205);
+    margin: 1rem;
+    padding: 1rem;
+}
+
+/* VIRTUAL INSTRUMENTS */
+#all-VST-instr-gallery{
+    border: 4px dashed rgb(255, 56, 165);
+}
+
+#VST-instr-header{
+    border: 4px dotted rgb(255, 56, 165);
+}
+
+#VST-instr-card{
+    border: 2px solid rgb(249, 151, 205);
+    margin: 1rem;
+    padding: 1rem;
+}
+
+/* GENRES */
+#all-genre-instr-gallery{
+    border: 4px dashed rgb(255, 56, 165);
+}
+
+#genre-instr-header{
+    border: 4px dotted rgb(255, 56, 165);
+}
+
+#genre-instr-card{
     border: 2px solid rgb(249, 151, 205);
     margin: 1rem;
     padding: 1rem;

@@ -39,3 +39,29 @@ export const fetchAllPhysInstr = async () => {
 		console.error("Unable to fetch all physical instruments", error);
 	}
 };
+
+// -----VIRTUAL INSTRUMENT API CALLS-------//
+
+// FETCH ALL VIRTUAL INSTRUMENTS
+export const fetchAllVSTInstr = async () => {
+	try {
+		const response = await fetch(`${API_URL}/VST_instr`);
+		const VSTInstr = await response.json();
+		return VSTInstr;
+	} catch (error) {
+		console.error("Unable to fetch all virtual instruments", error);
+	}
+};
+
+// -----VIRTUAL INSTRUMENT API CALLS-------//
+
+// FETCH ALL GENRES
+export const fetchAllGenres = async () => {
+	try {
+		const response = await fetch(`${API_URL}/genres`);
+		const Genres = await response.json();
+		return Genres;
+	} catch (error) {
+		console.error("Unable to fetch all genres", error);
+	}
+};

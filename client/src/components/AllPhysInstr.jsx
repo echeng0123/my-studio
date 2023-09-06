@@ -54,7 +54,7 @@ export default function AllPhysInstr() {
 						<input
 							id="search-instr-bar"
 							type="text"
-							placeholder="Search instrument name or any parameter"
+							placeholder="Search instrument name, parameter, or tag"
 							onChange={(event) =>
 								setSearchParam(event.target.value.toLowerCase())
 							}
