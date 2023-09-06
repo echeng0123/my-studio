@@ -40,6 +40,17 @@ export const fetchAllPhysInstr = async () => {
 	}
 };
 
+// FETCH SINGLE PHYSICAL INSTRUMENT
+export const fetchSinglePhysInstr = async (physInstrId) => {
+	try {
+		const response = await fetch(`${API_URL}/phys_instr/${physInstrId}`);
+		const physInstr = await response.json();
+		return physInstr;
+	} catch (error) {
+		console.error("Unable to fetch single physical instrument", error);
+	}
+};
+
 // -----VIRTUAL INSTRUMENT API CALLS-------//
 
 // FETCH ALL VIRTUAL INSTRUMENTS

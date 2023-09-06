@@ -2,15 +2,17 @@
 
 import { useState, useEffect } from "react";
 import { fetchAllPhysInstr } from "../../fetching";
+import PhysInstrButton from "./PhysInstrButton";
+import SinglePhysInstr from "./SinglePhysInstr";
 
 export default function AllPhysInstr() {
 	const [physInstrs, setPhysInstrs] = useState([]);
 	const [searchParam, setSearchParam] = useState("");
+	const [instrId, setInstrId] = useState(null);
 
 	useEffect(() => {
 		async function getAllPhysInstr() {
 			const APIResponse = await fetchAllPhysInstr();
-			console.log(APIResponse);
 			if (APIResponse) {
 				setPhysInstrs(APIResponse);
 			} else {
@@ -42,6 +44,12 @@ export default function AllPhysInstr() {
 		return str.join(" ");
 	}
 
+	// grabs button status from child
+	function CallBack(buttonStatus) {
+		setInstrId(buttonStatus);
+		return instrId;
+	}
+
 	return (
 		<div>
 			<div>
@@ -63,28 +71,48 @@ export default function AllPhysInstr() {
 				</div>
 				<div id="all-phys-instr-gallery">
 					{physInstrToDisplay.map((physInstr) => {
+						const PI_id = physInstr.phys_id;
 						return (
-							<>
-								<div id="phys-instr-card">
-									<h3 id="phys-instr-header">
-										{titleCase(physInstr.instr_name)}
-									</h3>
-									<h5>Category: {physInstr.instr_category}</h5>
-									<h5>Family: {physInstr.instr_family}</h5>
-									<h5>Articulation Type: {physInstr.art_type}</h5>
-									<h5>VST Available?: {physInstr.vst_avail ? "Yes" : "No"}</h5>
-									<h5>
-										Tags:{" "}
-										{physInstr.tags[0]
-											? JSON.stringify(physInstr.tags)
-											: "None"}
-									</h5>
+							// eslint-disable-next-line react/jsx-key
+							<div id="main-phys-instr-container">
+								<div>
+									<div id="phys-instr-card">
+										<h3 id="phys-instr-header">
+											{titleCase(physInstr.instr_name)}
+										</h3>
+										<PhysInstrButton handleCallback={CallBack} PI_id={PI_id} />
+									</div>
 								</div>
-							</>
+								<div>
+									<div id="phys-instr-card-details">
+										<SinglePhysInstr physInstr={physInstr} PI_id={PI_id} />
+									</div>
+									{/* {instrId == PI_id ? (
+										<div id="phys-instr-card-details">
+											<SinglePhysInstr instrId={instrId} />
+										</div>
+									) : (
+										<></>
+									)} */}
+								</div>
+							</div>
 						);
 					})}
 				</div>
 			</div>
 		</div>
 	);
+}
+
+{
+	/* <h5>Category: {physInstr.instr_category}</h5>
+<h5>Family: {physInstr.instr_family}</h5>
+<h5>Articulation Type: {}</h5>
+<h5>VST Available?: {physInstr.vst_avail ? "Yes" : "No"}</h5>
+<h5>
+    Tags:{" "}
+    {physInstr.tags[0]
+        ? JSON.stringify(physInstr.tags)
+        : "None"}
+</h5> */
 }
