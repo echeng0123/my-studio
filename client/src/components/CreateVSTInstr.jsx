@@ -46,7 +46,7 @@ export default function CreateNewVSTInstr() {
 
 	return (
 		<div id="new-instrument-container">
-			<h2 id="new-instr-header">Create a New Instrument</h2>
+			<h2 id="new-instr-header">Add a New Virtual Instrument</h2>
 			<form onSubmit={handleSubmit} id="new-instr-form-container">
 				<TextField
 					id="NP-input-box"

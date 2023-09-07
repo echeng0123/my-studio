@@ -40,7 +40,7 @@ export default function EditPhysInstr(PI_id) {
 		try {
 			await editPhysInstr(instrData, PhysInstrIdEP);
 			setIsOpen(!isOpen); // close edit button
-			navigate(0);
+			navigate("/phys_instr");
 		} catch (err) {
 			console.error("can't edit physical instrument", err);
 		}

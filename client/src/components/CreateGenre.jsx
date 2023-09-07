@@ -31,7 +31,7 @@ export default function CreateGenre() {
 
 	return (
 		<div id="new-instrument-container">
-			<h2 id="new-instr-header">Create a New Genre</h2>
+			<h2 id="new-instr-header">Add a New Genre</h2>
 			<form onSubmit={handleSubmit} id="new-instr-form-container">
 				<TextField
 					id="NP-input-box"

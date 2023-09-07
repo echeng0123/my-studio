@@ -11,7 +11,7 @@ export default function PhysInstrButton({ physInstrAP, PI_id }) {
 	function handleClick() {
 		setIsOpen(!isOpen);
 	}
-	// const message = "test from PIB";
+
 	return (
 		<div>
 			<button id="clickable-instr-button" onClick={handleClick}>
