@@ -87,6 +87,26 @@ export const deletePhysInstr = async (physId) => {
 	}
 };
 
+// EDIT GENRE
+
+export async function editPhysInstr(instrData, PhysInstrIdEP) {
+	try {
+		const response = await fetch(`${API_URL}/phys_instr/${PhysInstrIdEP}`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(instrData),
+		});
+		const result = await response.json();
+		alert("Successfully edited PhysInstr.");
+		return result;
+	} catch (error) {
+		alert("Can't edit PhysInstr");
+		console.error(error);
+	}
+}
+
 // -----VIRTUAL INSTRUMENT API CALLS-------//
 
 // FETCH ALL VIRTUAL INSTRUMENTS
@@ -203,3 +223,23 @@ export const deleteGenre = async (genreId) => {
 		console.error("Can't delete genre ", error);
 	}
 };
+
+// EDIT GENRE
+
+export async function editGenre(genreObj, genreIdEP) {
+	try {
+		const response = await fetch(`${API_URL}/genres/${genreIdEP}`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(genreObj),
+		});
+		const result = await response.json();
+		alert("Successfully edited genre.");
+		return result;
+	} catch (error) {
+		alert("Can't edit genre");
+		console.error(error);
+	}
+}

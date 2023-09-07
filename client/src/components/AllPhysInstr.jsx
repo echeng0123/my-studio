@@ -5,6 +5,7 @@ import { fetchAllPhysInstr } from "../../fetching";
 import PhysInstrButton from "./PhysInstrButton";
 import CreateNewPhysInstr from "./CreateNewPhysInstr";
 import DeletePhysInstr from "./DeletePhysInstr";
+import EditPhysInstr from "./EditPhysInstr";
 
 export default function AllPhysInstr() {
 	const [physInstrs, setPhysInstrs] = useState([]);
@@ -84,6 +85,7 @@ export default function AllPhysInstr() {
 											PI_id={PI_id}
 											physInstrAP={physInstrAP}
 										/>
+										<EditPhysInstr PI_id={PI_id} />
 										<DeletePhysInstr physId={PI_id} />
 									</div>
 								</div>

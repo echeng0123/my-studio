@@ -5,6 +5,7 @@ import { fetchAllGenres } from "../../fetching";
 import GenreButton from "./GenreButton";
 import CreateGenre from "./CreateGenre";
 import DeleteGenre from "./DeleteGenre";
+import EditGenre from "./EditGenre";
 
 export default function AllGenres() {
 	const [genres, setGenres] = useState([]);
@@ -62,6 +63,7 @@ export default function AllGenres() {
 							<>
 								<div id="genre-instr-card">
 									<GenreButton genreId={genreId} genreAP={genreAP} />
+									<EditGenre genreId={genreId} genreAP={genreAP} />
 									<DeleteGenre genreId={genreId} />
 								</div>
 							</>

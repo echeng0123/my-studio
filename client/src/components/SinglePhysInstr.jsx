@@ -8,8 +8,6 @@ export default function SinglePhysInstr({ physInstrPIB, PIBid }) {
 	const SPI_id = PIBid;
 	const physInstrSPI = physInstrPIB;
 
-	console.log("PISPI", physInstrSPI);
-
 	useEffect(() => {
 		async function getSinglePhysInstr() {
 			const APIResponse = await fetchSinglePhysInstr(SPI_id);
