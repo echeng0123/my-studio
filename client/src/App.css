@@ -12,6 +12,7 @@ a {
 
 #app-section{
     border: 2px solid red;
+    background-color: rgb(122, 128, 131);
     margin: 1rem;
     padding: 1rem;
 }
@@ -54,6 +55,8 @@ a {
 
 #all-phys-instr-gallery{
     border: 4px dashed rgb(255, 56, 165);
+    display: flex;
+    flex-wrap: wrap;
 }
 
 #phys-instr-header{

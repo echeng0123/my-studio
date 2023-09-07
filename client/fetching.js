@@ -51,6 +51,41 @@ export const fetchSinglePhysInstr = async (physInstrId) => {
 	}
 };
 
+// CREATE NEW PHYSICAL INSTRUMENT
+
+export const createNewPhysInstr = async (stringData) => {
+	try {
+		console.log("instr data in CNPI", stringData);
+		const response = await fetch(`${API_URL}/phys_instr`, {
+			method: "POST",
+			body: stringData,
+		});
+		console.log("response from NPF: ", response);
+		const result = await response.json();
+		console.log("result from NPF: ", result);
+		fetchAllPhysInstr();
+	} catch (err) {
+		console.error(
+			"Oops, something went wrong with adding that instrument!",
+			err
+		);
+	}
+};
+
+// DELETE PHYSICAL INSTRUMENT
+
+export const deletePhysInstr = async (physId) => {
+	try {
+		const response = await fetch(`${API_URL}/phys_instr/${physId}`, {
+			method: "DELETE",
+		});
+		const result = await response.json();
+		return result;
+	} catch (error) {
+		console.error("Can't delete instrument ", error);
+	}
+};
+
 // -----VIRTUAL INSTRUMENT API CALLS-------//
 
 // FETCH ALL VIRTUAL INSTRUMENTS

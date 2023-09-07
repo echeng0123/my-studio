@@ -11,11 +11,8 @@ export default function SinglePhysInstr({ PIBid }) {
 		async function getSinglePhysInstr() {
 			console.log("SPI Id", SPI_id);
 			const APIResponse = await fetchSinglePhysInstr(SPI_id);
-			console.log(APIResponse);
 			if (APIResponse) {
 				setPhysInstr(APIResponse);
-				console.log("physInstr is ", physInstr);
-				console.log("tags", JSON.stringify(physInstr.tags));
 			} else {
 				console.error("Unable to fetch single physical instrument");
 			}

@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { fetchAllPhysInstr } from "../../fetching";
 import PhysInstrButton from "./PhysInstrButton";
-import SinglePhysInstr from "./SinglePhysInstr";
+import CreateNewPhysInstr from "./CreateNewPhysInstr";
+import DeletePhysInstr from "./DeletePhysInstr";
 
 export default function AllPhysInstr() {
 	const [physInstrs, setPhysInstrs] = useState([]);
@@ -63,6 +64,9 @@ export default function AllPhysInstr() {
 						/>
 					</label>
 				</div>
+				<div id="create-new-instr-container">
+					<CreateNewPhysInstr />
+				</div>
 				<div id="all-phys-instr-gallery">
 					{physInstrToDisplay.map((physInstr) => {
 						const PI_id = physInstr.phys_id;
@@ -75,6 +79,7 @@ export default function AllPhysInstr() {
 											{titleCase(physInstr.instr_name)}
 										</h3>
 										<PhysInstrButton key={PI_id} PI_id={PI_id} />
+										<DeletePhysInstr physId={PI_id} />
 									</div>
 								</div>
 							</div>
