@@ -44,12 +44,6 @@ export default function AllPhysInstr() {
 		return str.join(" ");
 	}
 
-	// grabs button status from child
-	function CallBack(buttonStatus) {
-		setInstrId(buttonStatus);
-		return instrId;
-	}
-
 	return (
 		<div>
 			<div>
@@ -80,20 +74,8 @@ export default function AllPhysInstr() {
 										<h3 id="phys-instr-header">
 											{titleCase(physInstr.instr_name)}
 										</h3>
-										<PhysInstrButton handleCallback={CallBack} PI_id={PI_id} />
+										<PhysInstrButton key={PI_id} PI_id={PI_id} />
 									</div>
-								</div>
-								<div>
-									<div id="phys-instr-card-details">
-										<SinglePhysInstr physInstr={physInstr} PI_id={PI_id} />
-									</div>
-									{/* {instrId == PI_id ? (
-										<div id="phys-instr-card-details">
-											<SinglePhysInstr instrId={instrId} />
-										</div>
-									) : (
-										<></>
-									)} */}
 								</div>
 							</div>
 						);
@@ -102,17 +84,4 @@ export default function AllPhysInstr() {
 			</div>
 		</div>
 	);
-}
-
-{
-	/* <h5>Category: {physInstr.instr_category}</h5>
-<h5>Family: {physInstr.instr_family}</h5>
-<h5>Articulation Type: {}</h5>
-<h5>VST Available?: {physInstr.vst_avail ? "Yes" : "No"}</h5>
-<h5>
-    Tags:{" "}
-    {physInstr.tags[0]
-        ? JSON.stringify(physInstr.tags)
-        : "None"}
-</h5> */
 }

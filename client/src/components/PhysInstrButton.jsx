@@ -3,15 +3,13 @@
 import { useState } from "react";
 import SinglePhysInstr from "./SinglePhysInstr";
 
-export default function PhysInstrButton({ handleCallback, PI_id }) {
+export default function PhysInstrButton({ PI_id }) {
 	const [isOpen, setIsOpen] = useState(false);
 	const PIBid = PI_id;
 
 	function handleClick() {
 		setIsOpen(!isOpen);
-		handleCallback(PIBid);
 	}
-
 	// const message = "test from PIB";
 	return (
 		<div>
@@ -19,7 +17,7 @@ export default function PhysInstrButton({ handleCallback, PI_id }) {
 				{" "}
 				<div id="each-instrument">
 					<h3>name here</h3>
-					{isOpen && <SinglePhysInstr />}
+					{isOpen && <SinglePhysInstr key={PIBid} PIBid={PIBid} />}
 				</div>
 			</button>
 		</div>
