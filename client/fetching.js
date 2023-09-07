@@ -189,3 +189,17 @@ export const createNewGenre = async (genreData) => {
 		console.error("Oops, something went wrong with adding that genre!", err);
 	}
 };
+
+// DELETE GENRE
+
+export const deleteGenre = async (genreId) => {
+	try {
+		const response = await fetch(`${API_URL}/genres/${genreId}`, {
+			method: "DELETE",
+		});
+		const result = await response.json();
+		return result;
+	} catch (error) {
+		console.error("Can't delete genre ", error);
+	}
+};

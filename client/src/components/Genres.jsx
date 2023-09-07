@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { fetchAllGenres } from "../../fetching";
 import GenreButton from "./GenreButton";
 import CreateGenre from "./CreateGenre";
+import DeleteGenre from "./DeleteGenre";
 
 export default function AllGenres() {
 	const [genres, setGenres] = useState([]);
@@ -12,7 +13,6 @@ export default function AllGenres() {
 	useEffect(() => {
 		async function getAllGenres() {
 			const APIResponse = await fetchAllGenres();
-			console.log(APIResponse);
 			if (APIResponse) {
 				setGenres(APIResponse);
 			} else {
@@ -62,6 +62,7 @@ export default function AllGenres() {
 							<>
 								<div id="genre-instr-card">
 									<GenreButton genreId={genreId} genreAP={genreAP} />
+									<DeleteGenre genreId={genreId} />
 								</div>
 							</>
 						);
