@@ -159,3 +159,14 @@ export const fetchAllGenres = async () => {
 		console.error("Unable to fetch all genres", error);
 	}
 };
+
+// FETCH SINGLE GENRE
+export const fetchSingleGenre = async (GenreId) => {
+	try {
+		const response = await fetch(`${API_URL}/genres/${GenreId}`);
+		const Genre = await response.json();
+		return Genre;
+	} catch (error) {
+		console.error("Unable to fetch single virtual instrument from API", error);
+	}
+};

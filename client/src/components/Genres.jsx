@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { fetchAllGenres } from "../../fetching";
+import GenreButton from "./GenreButton";
 
 export default function AllGenres() {
 	const [genres, setGenres] = useState([]);
@@ -30,15 +31,6 @@ export default function AllGenres() {
 		  )
 		: genres;
 
-	// converts instrument name to title case/sentence case for later display in rendering
-	function titleCase(str) {
-		str = str.toLowerCase().split(" ");
-		for (let i = 0; i < str.length; i++) {
-			str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
-		}
-		return str.join(" ");
-	}
-
 	return (
 		<div>
 			<div>
@@ -60,18 +52,12 @@ export default function AllGenres() {
 				</div>
 				<div id="all-genre-instr-gallery">
 					{genresToDisplay.map((genres) => {
+						const genreId = genres.genre_id;
+						const genreAP = genres;
 						return (
 							<>
 								<div id="genre-instr-card">
-									<h3 id="genre-instr-header">
-										{titleCase(genres.genre_name)}
-									</h3>
-									<h5>Age/Time: {genres.age_time}</h5>
-									<h5>BPM: {genres.bpm}</h5>
-									<h5>
-										Tags:{" "}
-										{genres.tags[0] ? JSON.stringify(genres.tags) : "None"}
-									</h5>
+									<GenreButton genreId={genreId} genreAP={genreAP} />
 								</div>
 							</>
 						);
