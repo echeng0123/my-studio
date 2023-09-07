@@ -5,6 +5,7 @@ import { fetchAllVSTInstr } from "../../fetching";
 import DeleteVSTInstr from "./DeleteVSTInstr";
 import VSTInstrButton from "./VSTInstrButton";
 import CreateVSTInstr from "./CreateVSTInstr";
+import EditVSTInstr from "./EditVSTInstr";
 
 export default function AllVSTInstr() {
 	const [VSTInstrs, setVSTInstrs] = useState([]);
@@ -70,6 +71,7 @@ export default function AllVSTInstr() {
 										VSTInstrAV={VSTInstrAV}
 										VSTInstrId={VSTInstrId}
 									/>
+									<EditVSTInstr VSTInstrId={VSTInstrId} />
 									<DeleteVSTInstr />
 								</div>
 							</>

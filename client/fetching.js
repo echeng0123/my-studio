@@ -87,7 +87,7 @@ export const deletePhysInstr = async (physId) => {
 	}
 };
 
-// EDIT GENRE
+// EDIT PHYSICAL INSTRUMENT
 
 export async function editPhysInstr(instrData, PhysInstrIdEP) {
 	try {
@@ -166,6 +166,26 @@ export const deleteVSTInstr = async (physId) => {
 		console.error("Can't delete instrument ", error);
 	}
 };
+
+// EDIT VIRTUAL INSTRUMENT
+
+export async function editVSTInstr(instrData, VSTInstrIdEP) {
+	try {
+		const response = await fetch(`${API_URL}/VST_instr/${VSTInstrIdEP}`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(instrData),
+		});
+		const result = await response.json();
+		alert("Successfully edited VSTInstr.");
+		return result;
+	} catch (error) {
+		alert("Can't edit VSTInstr");
+		console.error(error);
+	}
+}
 
 // -----GENRE API CALLS-------//
 

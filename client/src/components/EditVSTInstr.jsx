@@ -1,24 +1,25 @@
-// this component handles the editing of a physical instrument
+// this component handles the editing of a virtual instrument
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { editPhysInstr } from "../../fetching";
+import { editVSTInstr } from "../../fetching";
 import { TextField, InputLabel, Select, MenuItem } from "@mui/material";
 
-export default function EditPhysInstr(PI_id) {
+export default function EditVSTInstr(VSTInstrId) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [instrName, setInstrName] = useState("");
 	const [instrFamily, setInstrFamily] = useState("");
-	const [instrType, setInstrType] = useState("");
 	const [instrCategory, setInstrCategory] = useState("");
-	const [vstAvail, setVSTAvail] = useState(false);
+	const [engine, setEngine] = useState("");
+	const [brand, setBrand] = useState("");
+	const [physAvail, setphysAvail] = useState(false);
 	const [instrTags, setInstrTags] = useState([]);
 	const [imageURL, setImageURL] = useState("");
 	const [userId, setUserId] = useState(1);
 
 	const navigate = useNavigate();
 
-	const PhysInstrIdEP = PI_id.PI_id;
+	const VSTInstrIdEP = VSTInstrId.VSTInstrId;
 
 	function handleClick() {
 		setIsOpen(!isOpen);
@@ -31,29 +32,30 @@ export default function EditPhysInstr(PI_id) {
 			instr_name: instrName,
 			instr_family: instrFamily,
 			instr_category: instrCategory,
-			art_type: instrType,
-			VST_avail: vstAvail,
+			engine: engine,
+			brand: brand,
+			phys_avail: physAvail,
 			tags: [instrTags],
 			image_URL: imageURL,
 		};
 
 		try {
-			await editPhysInstr(instrData, PhysInstrIdEP);
+			await editVSTInstr(instrData, VSTInstrIdEP);
 			setIsOpen(!isOpen); // close edit button
 			navigate(0);
 		} catch (err) {
-			console.error("can't edit physical instrument", err);
+			console.error("can't edit virtual instrument", err);
 		}
 	}
 
 	return (
 		<div>
 			<button onClick={handleClick} id="buttons-self">
-				Edit Physical Instrument
+				Edit Virtual Instrument
 			</button>
 			{isOpen && (
 				<div id="new-instrument-container">
-					<h2 id="new-instr-header">Edit Physical Instrument</h2>
+					<h2 id="new-instr-header">Edit virtual Instrument</h2>
 					<form onSubmit={handleEdit} id="new-instr-form-container">
 						<TextField
 							id="NP-input-box"
@@ -69,9 +71,9 @@ export default function EditPhysInstr(PI_id) {
 						/>
 						<TextField
 							id="NP-input-box"
-							label="Type"
-							value={instrType}
-							onChange={(e) => setInstrType(e.target.value)}
+							label="Engine"
+							value={engine}
+							onChange={(e) => setEngine(e.target.value)}
 						/>
 						<TextField
 							id="NP-input-box"
@@ -79,12 +81,18 @@ export default function EditPhysInstr(PI_id) {
 							value={instrCategory}
 							onChange={(e) => setInstrCategory(e.target.value)}
 						/>
-						<InputLabel id="NP-VST-label">VST Available?</InputLabel>
+						<TextField
+							id="NP-input-box"
+							label="Brand"
+							value={brand}
+							onChange={(e) => setBrand(e.target.value)}
+						/>
+						<InputLabel id="NP-phys-label">phys Available?</InputLabel>
 						<Select
 							labelId="simple-select-label"
 							id="NP-input-box"
-							value={vstAvail}
-							label="VST Avail"
+							value={physAvail}
+							label="phys Avail"
 							onChange={handleEdit}
 						>
 							<MenuItem value={false}>No</MenuItem>
