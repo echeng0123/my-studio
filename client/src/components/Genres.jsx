@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { fetchAllGenres } from "../../fetching";
 import GenreButton from "./GenreButton";
+import CreateGenre from "./CreateGenre";
 
 export default function AllGenres() {
 	const [genres, setGenres] = useState([]);
@@ -49,6 +50,9 @@ export default function AllGenres() {
 							}
 						/>
 					</label>
+				</div>
+				<div id="new-genre-post-container">
+					<CreateGenre />
 				</div>
 				<div id="all-genre-instr-gallery">
 					{genresToDisplay.map((genres) => {

@@ -170,3 +170,22 @@ export const fetchSingleGenre = async (GenreId) => {
 		console.error("Unable to fetch single virtual instrument from API", error);
 	}
 };
+
+// CREATE NEW GENRE
+
+export const createNewGenre = async (genreData) => {
+	try {
+		const response = await fetch(`${API_URL}/genres`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(genreData),
+		});
+		const result = await response.json();
+		console.log("result from NPF: ", result);
+		fetchAllGenres();
+	} catch (err) {
+		console.error("Oops, something went wrong with adding that genre!", err);
+	}
+};

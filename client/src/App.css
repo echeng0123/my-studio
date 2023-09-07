@@ -93,6 +93,8 @@ a {
 /* GENRES */
 #all-genre-instr-gallery{
     border: 4px dashed rgb(255, 56, 165);
+    display: flex;
+    flex-wrap: wrap;
 }
 
 #genre-instr-header{
