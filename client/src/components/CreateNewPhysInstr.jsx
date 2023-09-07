@@ -33,8 +33,12 @@ export default function CreateNewPhysInstr() {
 			image_URL: imageURL,
 			userId: userId,
 		};
-		createNewPhysInstr(instrData);
-		// navigate(0);
+		try {
+			await createNewPhysInstr(instrData);
+			navigate(0);
+		} catch (error) {
+			console.error("Can't create physical instrument!", error);
+		}
 	}
 
 	return (

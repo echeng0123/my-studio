@@ -55,7 +55,6 @@ export const fetchSinglePhysInstr = async (physInstrId) => {
 
 export const createNewPhysInstr = async (instrData) => {
 	try {
-		console.log("instr data in CNPI", instrData);
 		const response = await fetch(`${API_URL}/phys_instr`, {
 			method: "POST",
 			headers: {
@@ -63,7 +62,6 @@ export const createNewPhysInstr = async (instrData) => {
 			},
 			body: JSON.stringify(instrData),
 		});
-		console.log("response from NPF: ", response);
 		const result = await response.json();
 		console.log("result from NPF: ", result);
 		fetchAllPhysInstr();
@@ -102,7 +100,7 @@ export const fetchAllVSTInstr = async () => {
 	}
 };
 
-// FETCH SINGLE PHYSICAL INSTRUMENT
+// FETCH SINGLE VIRTUAL INSTRUMENT
 export const fetchSingleVSTInstr = async (VSTInstrId) => {
 	try {
 		const response = await fetch(`${API_URL}/VST_instr/${VSTInstrId}`);
@@ -113,16 +111,25 @@ export const fetchSingleVSTInstr = async (VSTInstrId) => {
 	}
 };
 
-// -----GENRE API CALLS-------//
+// CREATE NEW VIRTUAL INSTRUMENT
 
-// FETCH ALL GENRES
-export const fetchAllGenres = async () => {
+export const createNewVSTInstr = async (instrData) => {
 	try {
-		const response = await fetch(`${API_URL}/genres`);
-		const Genres = await response.json();
-		return Genres;
-	} catch (error) {
-		console.error("Unable to fetch all genres", error);
+		const response = await fetch(`${API_URL}/VST_instr`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(instrData),
+		});
+		const result = await response.json();
+		console.log("result from NPF: ", result);
+		fetchAllVSTInstr();
+	} catch (err) {
+		console.error(
+			"Oops, something went wrong with adding that instrument!",
+			err
+		);
 	}
 };
 
@@ -137,5 +144,18 @@ export const deleteVSTInstr = async (physId) => {
 		return result;
 	} catch (error) {
 		console.error("Can't delete instrument ", error);
+	}
+};
+
+// -----GENRE API CALLS-------//
+
+// FETCH ALL GENRES
+export const fetchAllGenres = async () => {
+	try {
+		const response = await fetch(`${API_URL}/genres`);
+		const Genres = await response.json();
+		return Genres;
+	} catch (error) {
+		console.error("Unable to fetch all genres", error);
 	}
 };

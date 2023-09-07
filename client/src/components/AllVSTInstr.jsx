@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { fetchAllVSTInstr } from "../../fetching";
 import DeleteVSTInstr from "./DeleteVSTInstr";
 import VSTInstrButton from "./VSTInstrButton";
+import CreateVSTInstr from "./CreateVSTInstr";
 
 export default function AllVSTInstr() {
 	const [VSTInstrs, setVSTInstrs] = useState([]);
@@ -35,15 +36,6 @@ export default function AllVSTInstr() {
 		  )
 		: VSTInstrs;
 
-	// converts instrument name to title case/sentence case for later display in rendering
-	function titleCase(str) {
-		str = str.toLowerCase().split(" ");
-		for (let i = 0; i < str.length; i++) {
-			str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
-		}
-		return str.join(" ");
-	}
-
 	return (
 		<div>
 			<div>
@@ -63,6 +55,9 @@ export default function AllVSTInstr() {
 						/>
 					</label>
 				</div>
+				<div id="new-VST-post-container">
+					<CreateVSTInstr />
+				</div>
 				<div id="all-phys-instr-gallery">
 					{VSTInstrToDisplay.map((VSTInstr) => {
 						const VSTInstrId = VSTInstr.vst_id;
@@ -70,21 +65,6 @@ export default function AllVSTInstr() {
 						return (
 							<>
 								<div id="VST-instr-card">
-									<h3 id="VST-instr-header">
-										{titleCase(VSTInstr.instr_name)}
-									</h3>
-									<h5>Category: {VSTInstr.instr_category}</h5>
-									<h5>Family: {VSTInstr.instr_family}</h5>
-									<h5>Brand: {VSTInstr.brand}</h5>
-									<h5>Engine: {VSTInstr.engine}</h5>
-									<h5>
-										Physical Option Available?:{" "}
-										{VSTInstr.phys_avail ? "Yes" : "No"}
-									</h5>
-									<h5>
-										Tags:{" "}
-										{VSTInstr.tags[0] ? JSON.stringify(VSTInstr.tags) : "None"}
-									</h5>
 									<VSTInstrButton
 										key={VSTInstrId}
 										VSTInstrAV={VSTInstrAV}

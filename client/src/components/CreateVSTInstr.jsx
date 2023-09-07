@@ -3,14 +3,15 @@
 import { TextField, InputLabel, Select, MenuItem } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createNewPhysInstr } from "../../fetching";
+import { createNewVSTInstr } from "../../fetching";
 
-export default function CreateNewPhysInstr() {
+export default function CreateNewVSTInstr() {
 	const [instrName, setInstrName] = useState("");
 	const [instrFamily, setInstrFamily] = useState("");
-	const [instrType, setInstrType] = useState("");
 	const [instrCategory, setInstrCategory] = useState("");
-	const [vstAvail, setVSTAvail] = useState(false);
+	const [engine, setEngine] = useState("");
+	const [brand, setBrand] = useState("");
+	const [physAvail, setphysAvail] = useState(false);
 	const [instrTags, setInstrTags] = useState([]);
 	const [imageURL, setImageURL] = useState("");
 	const [userId, setUserId] = useState(1);
@@ -18,7 +19,7 @@ export default function CreateNewPhysInstr() {
 	const navigate = useNavigate();
 
 	const handleChange = (event) => {
-		setVSTAvail(event.target.value);
+		setphysAvail(event.target.value);
 	};
 
 	async function handleSubmit(event) {
@@ -27,14 +28,20 @@ export default function CreateNewPhysInstr() {
 			instr_name: instrName,
 			instr_family: instrFamily,
 			instr_category: instrCategory,
-			art_type: instrType,
-			vst_avail: vstAvail,
+			engine: engine,
+			brand: brand,
+			phys_avail: physAvail,
 			tags: [instrTags],
 			image_URL: imageURL,
 			userId: userId,
 		};
-		createNewPhysInstr(instrData);
-		// navigate(0);
+
+		try {
+			await createNewVSTInstr(instrData);
+			navigate(0);
+		} catch (error) {
+			console.error("Can't create new virtual instrument!", error);
+		}
 	}
 
 	return (
@@ -55,9 +62,9 @@ export default function CreateNewPhysInstr() {
 				/>
 				<TextField
 					id="NP-input-box"
-					label="Type"
-					value={instrType}
-					onChange={(e) => setInstrType(e.target.value)}
+					label="Engine"
+					value={engine}
+					onChange={(e) => setEngine(e.target.value)}
 				/>
 				<TextField
 					id="NP-input-box"
@@ -65,12 +72,18 @@ export default function CreateNewPhysInstr() {
 					value={instrCategory}
 					onChange={(e) => setInstrCategory(e.target.value)}
 				/>
-				<InputLabel id="NP-VST-label">VST Available?</InputLabel>
+				<TextField
+					id="NP-input-box"
+					label="Brand"
+					value={brand}
+					onChange={(e) => setBrand(e.target.value)}
+				/>
+				<InputLabel id="NP-phys-label">phys Available?</InputLabel>
 				<Select
 					labelId="simple-select-label"
 					id="NP-input-box"
-					value={vstAvail}
-					label="VST Avail"
+					value={physAvail}
+					label="phys Avail"
 					onChange={handleChange}
 				>
 					<MenuItem value={false}>No</MenuItem>
