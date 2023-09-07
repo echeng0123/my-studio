@@ -1,4 +1,4 @@
-// Create new physical instrument and add to database
+// Create new virtual instrument and add to database
 
 import { TextField, InputLabel, Select, MenuItem } from "@mui/material";
 import { useState } from "react";

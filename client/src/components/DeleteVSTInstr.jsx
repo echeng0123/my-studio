@@ -1,10 +1,10 @@
-// This component handles the deleting of a physical instrument
+// This component handles the deleting of a virtual instrument
 
 import { useNavigate } from "react-router-dom";
-import { deletePhysInstr } from "../../fetching";
+import { deleteVSTInstr } from "../../fetching";
 
-export default function DeletePhysInstr(physId) {
-	const physIdDP = physId.physId;
+export default function DeleteVSTInstr(VSTId) {
+	const VSTIdDP = VSTId.VSTId;
 
 	const navigate = useNavigate();
 
@@ -12,7 +12,7 @@ export default function DeletePhysInstr(physId) {
 		event.preventDefault();
 
 		try {
-			await deletePhysInstr(physIdDP);
+			await deleteVSTInstr(VSTIdDP);
 			navigate(0);
 		} catch (error) {
 			console.error(error);

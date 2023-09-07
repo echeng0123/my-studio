@@ -53,12 +53,15 @@ export const fetchSinglePhysInstr = async (physInstrId) => {
 
 // CREATE NEW PHYSICAL INSTRUMENT
 
-export const createNewPhysInstr = async (stringData) => {
+export const createNewPhysInstr = async (instrData) => {
 	try {
-		console.log("instr data in CNPI", stringData);
+		console.log("instr data in CNPI", instrData);
 		const response = await fetch(`${API_URL}/phys_instr`, {
 			method: "POST",
-			body: stringData,
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(instrData),
 		});
 		console.log("response from NPF: ", response);
 		const result = await response.json();
@@ -99,7 +102,18 @@ export const fetchAllVSTInstr = async () => {
 	}
 };
 
-// -----VIRTUAL INSTRUMENT API CALLS-------//
+// FETCH SINGLE PHYSICAL INSTRUMENT
+export const fetchSingleVSTInstr = async (VSTInstrId) => {
+	try {
+		const response = await fetch(`${API_URL}/VST_instr/${VSTInstrId}`);
+		const VSTInstr = await response.json();
+		return VSTInstr;
+	} catch (error) {
+		console.error("Unable to fetch single virtual instrument from API", error);
+	}
+};
+
+// -----GENRE API CALLS-------//
 
 // FETCH ALL GENRES
 export const fetchAllGenres = async () => {
@@ -109,5 +123,19 @@ export const fetchAllGenres = async () => {
 		return Genres;
 	} catch (error) {
 		console.error("Unable to fetch all genres", error);
+	}
+};
+
+// DELETE VIRTUAL INSTRUMENT
+
+export const deleteVSTInstr = async (physId) => {
+	try {
+		const response = await fetch(`${API_URL}/VST_instr/${physId}`, {
+			method: "DELETE",
+		});
+		const result = await response.json();
+		return result;
+	} catch (error) {
+		console.error("Can't delete instrument ", error);
 	}
 };

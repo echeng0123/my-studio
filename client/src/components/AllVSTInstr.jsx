@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { fetchAllVSTInstr } from "../../fetching";
+import DeleteVSTInstr from "./DeleteVSTInstr";
+import VSTInstrButton from "./VSTInstrButton";
 
 export default function AllVSTInstr() {
 	const [VSTInstrs, setVSTInstrs] = useState([]);
@@ -10,7 +12,6 @@ export default function AllVSTInstr() {
 	useEffect(() => {
 		async function getAllVSTInstr() {
 			const APIResponse = await fetchAllVSTInstr();
-			console.log(APIResponse);
 			if (APIResponse) {
 				setVSTInstrs(APIResponse);
 			} else {
@@ -64,6 +65,8 @@ export default function AllVSTInstr() {
 				</div>
 				<div id="all-phys-instr-gallery">
 					{VSTInstrToDisplay.map((VSTInstr) => {
+						const VSTInstrId = VSTInstr.vst_id;
+						const VSTInstrAV = VSTInstr;
 						return (
 							<>
 								<div id="VST-instr-card">
@@ -82,6 +85,12 @@ export default function AllVSTInstr() {
 										Tags:{" "}
 										{VSTInstr.tags[0] ? JSON.stringify(VSTInstr.tags) : "None"}
 									</h5>
+									<VSTInstrButton
+										key={VSTInstrId}
+										VSTInstrAV={VSTInstrAV}
+										VSTInstrId={VSTInstrId}
+									/>
+									<DeleteVSTInstr />
 								</div>
 							</>
 						);

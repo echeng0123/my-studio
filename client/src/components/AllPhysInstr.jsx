@@ -70,6 +70,7 @@ export default function AllPhysInstr() {
 				<div id="all-phys-instr-gallery">
 					{physInstrToDisplay.map((physInstr) => {
 						const PI_id = physInstr.phys_id;
+						const physInstrAP = physInstr;
 						return (
 							// eslint-disable-next-line react/jsx-key
 							<div id="main-phys-instr-container">
@@ -78,7 +79,11 @@ export default function AllPhysInstr() {
 										<h3 id="phys-instr-header">
 											{titleCase(physInstr.instr_name)}
 										</h3>
-										<PhysInstrButton key={PI_id} PI_id={PI_id} />
+										<PhysInstrButton
+											key={PI_id}
+											PI_id={PI_id}
+											physInstrAP={physInstrAP}
+										/>
 										<DeletePhysInstr physId={PI_id} />
 									</div>
 								</div>

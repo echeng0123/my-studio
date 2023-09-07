@@ -3,13 +3,15 @@
 import { useState, useEffect } from "react";
 import { fetchSinglePhysInstr } from "../../fetching";
 
-export default function SinglePhysInstr({ PIBid }) {
+export default function SinglePhysInstr({ physInstrPIB, PIBid }) {
 	const [physInstr, setPhysInstr] = useState({});
 	const SPI_id = PIBid;
+	const physInstrSPI = physInstrPIB;
+
+	console.log("PISPI", physInstrSPI);
 
 	useEffect(() => {
 		async function getSinglePhysInstr() {
-			console.log("SPI Id", SPI_id);
 			const APIResponse = await fetchSinglePhysInstr(SPI_id);
 			if (APIResponse) {
 				setPhysInstr(APIResponse);
@@ -27,7 +29,8 @@ export default function SinglePhysInstr({ PIBid }) {
 			<h5>Articulation Type: {physInstr.art_type}</h5>
 			<h5>VST Available?: {physInstr.vst_avail ? "Yes" : "No"}</h5>
 			<h5>
-				Tags: {physInstr.tags > 0 ? JSON.stringify(physInstr.tags) : "None"}
+				Tags:{" "}
+				{physInstrSPI.tags[0] ? JSON.stringify(physInstrSPI.tags) : "None"}
 			</h5>
 		</div>
 	);
