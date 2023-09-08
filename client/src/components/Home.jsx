@@ -37,7 +37,7 @@ export default function Home() {
 	}, []);
 
 	return (
-		<div id="home=container">
+		<div id="home-container">
 			<div id="home-header">
 				<h1>Welcome, Emily</h1>
 				<h3>

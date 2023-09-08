@@ -83,6 +83,7 @@ export default function CreateNewPhysInstr() {
 					<MenuItem value={false}>No</MenuItem>
 					<MenuItem value={true}>Yes</MenuItem>
 				</Select>
+				<br></br>
 				<TextField
 					id="NP-input-box"
 					label="Tags"
