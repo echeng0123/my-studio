@@ -7,6 +7,7 @@ import { fetchAllPhysInstr } from "../../fetching";
 export default function GenreJunctions() {
 	const [genreJuncs, setGenreJuncs] = useState([]);
 	const [physInstrs, setPhysInstrs] = useState([]);
+	const [searchParam, setSearchParam] = useState("");
 	const filteredJunctions = [];
 
 	// Pull in all genre junctions
@@ -45,6 +46,7 @@ export default function GenreJunctions() {
 		}
 		return filteredJunctions;
 	});
+	console.log(filteredJunctions);
 
 	// converts instrument name to title case/sentence case for later display in rendering
 	function titleCase(str) {
@@ -54,6 +56,20 @@ export default function GenreJunctions() {
 		}
 		return str.join(" ");
 	}
+
+	// allows for search functionality
+	// users can search any of the instrument parameters AND tags
+	const genreJuncToDisplay = searchParam
+		? filteredJunctions.filter(
+				(filteredJunc) =>
+					filteredJunc.instr_name.toLowerCase().includes(searchParam) ||
+					filteredJunc.instr_family.toLowerCase().includes(searchParam) ||
+					filteredJunc.instr_category.toLowerCase().includes(searchParam) ||
+					filteredJunc.art_type.toLowerCase().includes(searchParam) ||
+					JSON.stringify(filteredJunc.tags).toLowerCase().includes(searchParam)
+		  )
+		: filteredJunctions;
+	console.log("genreJuncToDisplay", genreJuncToDisplay);
 
 	return (
 		<div>
