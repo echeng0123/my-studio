@@ -6,13 +6,16 @@ import { useNavigate } from "react-router-dom";
 import { createNewPhysInstr } from "../../fetching";
 
 export default function CreateNewPhysInstr() {
+	const cryingCat =
+		"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F0e%2Ffd%2Fc3%2F0efdc3f87bb83cf7bcb7d7e9de67c359.jpg&f=1&nofb=1&ipt=472ba29f7ada52b4bf57b85dfe595a7ef880731b1cb63103265161745a4c2132&ipo=images";
+
 	const [instrName, setInstrName] = useState("");
 	const [instrFamily, setInstrFamily] = useState("");
 	const [instrType, setInstrType] = useState("");
 	const [instrCategory, setInstrCategory] = useState("");
 	const [vstAvail, setVSTAvail] = useState(false);
 	const [instrTags, setInstrTags] = useState([]);
-	const [imageURL, setImageURL] = useState("");
+	const [imageURL, setImageURL] = useState(cryingCat);
 	const [userId, setUserId] = useState(1);
 
 	const navigate = useNavigate();

@@ -37,15 +37,6 @@ export default function AllPhysInstr() {
 		  )
 		: physInstrs;
 
-	// converts instrument name to title case/sentence case for later display in rendering
-	function titleCase(str) {
-		str = str.toLowerCase().split(" ");
-		for (let i = 0; i < str.length; i++) {
-			str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
-		}
-		return str.join(" ");
-	}
-
 	return (
 		<div>
 			<div>
@@ -77,9 +68,6 @@ export default function AllPhysInstr() {
 							<div id="main-phys-instr-container">
 								<div>
 									<div id="phys-instr-card">
-										<h3 id="phys-instr-header">
-											{titleCase(physInstr.instr_name)}
-										</h3>
 										<PhysInstrButton
 											key={PI_id}
 											PI_id={PI_id}

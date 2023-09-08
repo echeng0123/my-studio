@@ -45,7 +45,6 @@ export default function GenreJunctions() {
 		}
 		return filteredJunctions;
 	});
-	console.log("filteredJunctions", filteredJunctions);
 
 	// converts instrument name to title case/sentence case for later display in rendering
 	function titleCase(str) {
