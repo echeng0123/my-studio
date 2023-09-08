@@ -26,7 +26,7 @@ export default function GenreButton({ genreId, genreAP }) {
 			<button id="clickable-instr-button" onClick={handleClick}>
 				{" "}
 				<div id="each-instrument">
-					<h3 id="genre-instr-header">{titleCase(GenreGB.genre_name)}</h3>
+					<h3 id="phys-instr-header">{titleCase(GenreGB.genre_name)}</h3>
 
 					{isOpen && <SingleGenre key={GBId} GBId={GBId} GenreGB={GenreGB} />}
 				</div>

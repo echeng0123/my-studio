@@ -11,6 +11,9 @@ function App() {
 				<NavBar />
 				<MainSection />
 			</div>
+			<button>
+				<a href="#top">Back to Top</a>
+			</button>
 		</>
 	);
 }

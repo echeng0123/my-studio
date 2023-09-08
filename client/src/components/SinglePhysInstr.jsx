@@ -25,7 +25,7 @@ export default function SinglePhysInstr({ physInstrPIB, PIBid }) {
 	}, []);
 
 	return (
-		<div>
+		<div id="card-info">
 			<h5>Category: {physInstr.instr_category}</h5>
 			<h5>Family: {physInstr.instr_family}</h5>
 			<h5>Articulation Type: {physInstr.art_type}</h5>

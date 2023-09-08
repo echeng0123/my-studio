@@ -21,7 +21,7 @@ export default function SingleGenre({ GenreGB, GBId }) {
 	}, []);
 
 	return (
-		<div>
+		<div id="card-info">
 			<h5>Common BPM Range: {Genre.bpm}</h5>
 			<h5>General Age/Time: {Genre.age_time}</h5>
 			<h5>Tags: {GenreSG.tags[0] ? JSON.stringify(GenreSG.tags) : "None"}</h5>

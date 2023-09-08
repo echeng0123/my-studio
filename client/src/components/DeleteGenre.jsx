@@ -20,7 +20,9 @@ export default function DeleteGenre(genreId) {
 	}
 	return (
 		<div>
-			<button onClick={handleDelete}>Delete Genre</button>
+			<button onClick={handleDelete} id="delete-button">
+				Delete Genre
+			</button>
 		</div>
 	);
 }

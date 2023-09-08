@@ -44,7 +44,7 @@ export default function AllPhysInstr() {
 					<h2>ALL PHYSICAL INSTRUMENTS</h2>
 				</div>
 				<div id="search-phys-instr">
-					<label>
+					<label id="search-label">
 						Search:{" "}
 						<input
 							id="search-instr-bar"
@@ -56,30 +56,32 @@ export default function AllPhysInstr() {
 						/>
 					</label>
 				</div>
-				<div id="create-new-instr-container">
-					<CreateNewPhysInstr />
-				</div>
-				<div id="all-phys-instr-gallery">
-					{physInstrToDisplay.map((physInstr) => {
-						const PI_id = physInstr.phys_id;
-						const physInstrAP = physInstr;
-						return (
-							// eslint-disable-next-line react/jsx-key
-							<div id="main-phys-instr-container">
-								<div>
-									<div id="phys-instr-card">
-										<PhysInstrButton
-											key={PI_id}
-											PI_id={PI_id}
-											physInstrAP={physInstrAP}
-										/>
-										<EditPhysInstr PI_id={PI_id} />
-										<DeletePhysInstr physId={PI_id} />
+				<div id="api-container">
+					<div id="create-new-instr-container">
+						<CreateNewPhysInstr />
+					</div>
+					<div id="all-phys-instr-gallery">
+						{physInstrToDisplay.map((physInstr) => {
+							const PI_id = physInstr.phys_id;
+							const physInstrAP = physInstr;
+							return (
+								// eslint-disable-next-line react/jsx-key
+								<div id="main-phys-instr-container">
+									<div>
+										<div id="phys-instr-card">
+											<PhysInstrButton
+												key={PI_id}
+												PI_id={PI_id}
+												physInstrAP={physInstrAP}
+											/>
+											<EditPhysInstr PI_id={PI_id} />
+											<DeletePhysInstr physId={PI_id} />
+										</div>
 									</div>
 								</div>
-							</div>
-						);
-					})}
+							);
+						})}
+					</div>
 				</div>
 			</div>
 		</div>

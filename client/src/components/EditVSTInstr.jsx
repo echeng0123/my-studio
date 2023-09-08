@@ -50,7 +50,7 @@ export default function EditVSTInstr(VSTInstrId) {
 
 	return (
 		<div>
-			<button onClick={handleClick} id="buttons-self">
+			<button onClick={handleClick} id="edit-button">
 				Edit Virtual Instrument
 			</button>
 			{isOpen && (

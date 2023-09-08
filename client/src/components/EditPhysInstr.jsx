@@ -48,7 +48,7 @@ export default function EditPhysInstr(PI_id) {
 
 	return (
 		<div>
-			<button onClick={handleClick} id="buttons-self">
+			<button onClick={handleClick} id="edit-button">
 				Edit Physical Instrument
 			</button>
 			{isOpen && (

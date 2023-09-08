@@ -26,7 +26,7 @@ export default function VSTInstrButton({ VSTInstrAV, VSTInstrId }) {
 			<button id="clickable-instr-button" onClick={handleClick}>
 				{" "}
 				<div id="each-instrument">
-					<h3 id="VST-instr-header">{titleCase(VSTInstrVIB.instr_name)}</h3>
+					<h3 id="phys-instr-header">{titleCase(VSTInstrVIB.instr_name)}</h3>
 					{isOpen && (
 						<SingleVSTInstr
 							key={VIBid}

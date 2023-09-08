@@ -40,10 +40,10 @@ export default function AllVSTInstr() {
 	return (
 		<div>
 			<div>
-				<div id="all-VST-instr-header">
+				<div id="all-phys-instr-header">
 					<h2>ALL VIRTUAL INSTRUMENTS</h2>
 				</div>
-				<div id="search-VST-instr">
+				<div id="search-phys-instr">
 					<label>
 						Search:{" "}
 						<input
@@ -56,27 +56,30 @@ export default function AllVSTInstr() {
 						/>
 					</label>
 				</div>
-				<div id="new-VST-post-container">
-					<CreateVSTInstr />
-				</div>
-				<div id="all-phys-instr-gallery">
-					{VSTInstrToDisplay.map((VSTInstr) => {
-						const VSTInstrId = VSTInstr.vst_id;
-						const VSTInstrAV = VSTInstr;
-						return (
-							<>
-								<div id="VST-instr-card">
-									<VSTInstrButton
-										key={VSTInstrId}
-										VSTInstrAV={VSTInstrAV}
-										VSTInstrId={VSTInstrId}
-									/>
-									<EditVSTInstr VSTInstrId={VSTInstrId} />
-									<DeleteVSTInstr />
+				<div id="api-container">
+					<div id="create-new-instr-container">
+						<CreateVSTInstr />
+					</div>
+					<div id="all-phys-instr-gallery">
+						{VSTInstrToDisplay.map((VSTInstr) => {
+							const VSTInstrId = VSTInstr.vst_id;
+							const VSTInstrAV = VSTInstr;
+							return (
+								// eslint-disable-next-line react/jsx-key
+								<div id="main-phys-instr-container">
+									<div id="phys-instr-card">
+										<VSTInstrButton
+											key={VSTInstrId}
+											VSTInstrAV={VSTInstrAV}
+											VSTInstrId={VSTInstrId}
+										/>
+										<EditVSTInstr VSTInstrId={VSTInstrId} />
+										<DeleteVSTInstr />
+									</div>
 								</div>
-							</>
-						);
-					})}
+							);
+						})}
+					</div>
 				</div>
 			</div>
 		</div>

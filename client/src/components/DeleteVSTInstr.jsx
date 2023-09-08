@@ -20,7 +20,9 @@ export default function DeleteVSTInstr(VSTId) {
 	}
 	return (
 		<div>
-			<button onClick={handleDelete}>Delete Instrument</button>
+			<button onClick={handleDelete} id="delete-button">
+				Delete Instrument
+			</button>
 		</div>
 	);
 }

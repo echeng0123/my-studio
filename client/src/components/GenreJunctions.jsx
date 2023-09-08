@@ -117,10 +117,10 @@ export default function GenreJunctions() {
 
 	return (
 		<div>
-			<h1>Genre Junctions</h1>
+			<h1 id="all-phys-instr-header">Genre Junctions</h1>
 			<h3>Search instruments for corresponding genres</h3>
 			<div id="search-phys-instr">
-				<label>
+				<label id="search-label">
 					Search Physical Instruments:{" "}
 					<input
 						id="search-instr-bar"
@@ -133,7 +133,7 @@ export default function GenreJunctions() {
 				</label>
 			</div>
 			<div id="search-phys-instr">
-				<label>
+				<label id="search-label">
 					Search Virtual Instruments:{" "}
 					<input
 						id="search-instr-bar"
@@ -145,7 +145,7 @@ export default function GenreJunctions() {
 					/>
 				</label>
 			</div>
-			<div id="phys-juncs-container">
+			<div id="genre-junc-card">
 				{genreJuncToDisplay.map((junc) => {
 					return (
 						// eslint-disable-next-line react/jsx-key

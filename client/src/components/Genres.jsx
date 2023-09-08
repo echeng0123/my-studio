@@ -36,10 +36,10 @@ export default function AllGenres() {
 	return (
 		<div>
 			<div>
-				<div id="all-genre-header">
+				<div id="all-phys-instr-header">
 					<h2>ALL GENRES</h2>
 				</div>
-				<div id="search-genre">
+				<div id="search-phys-instr">
 					<label>
 						Search:{" "}
 						<input
@@ -52,23 +52,25 @@ export default function AllGenres() {
 						/>
 					</label>
 				</div>
-				<div id="new-genre-post-container">
-					<CreateGenre />
-				</div>
-				<div id="all-genre-instr-gallery">
-					{genresToDisplay.map((genres) => {
-						const genreId = genres.genre_id;
-						const genreAP = genres;
-						return (
-							<>
-								<div id="genre-instr-card">
-									<GenreButton genreId={genreId} genreAP={genreAP} />
-									<EditGenre genreId={genreId} genreAP={genreAP} />
-									<DeleteGenre genreId={genreId} />
-								</div>
-							</>
-						);
-					})}
+				<div id="api-container">
+					<div id="create-new-instr-container">
+						<CreateGenre />
+					</div>
+					<div id="all-phys-instr-gallery">
+						{genresToDisplay.map((genres) => {
+							const genreId = genres.genre_id;
+							const genreAP = genres;
+							return (
+								<>
+									<div id="phys-instr-card">
+										<GenreButton genreId={genreId} genreAP={genreAP} />
+										<EditGenre genreId={genreId} genreAP={genreAP} />
+										<DeleteGenre genreId={genreId} />
+									</div>
+								</>
+							);
+						})}
+					</div>
 				</div>
 			</div>
 		</div>

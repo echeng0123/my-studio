@@ -25,7 +25,7 @@ export default function SingleVSTInstr({ VSTInstrVIB, VIBid }) {
 	}, []);
 
 	return (
-		<div>
+		<div id="card-info">
 			<h5>Family: {VSTInstr.instr_family}</h5>
 			<h5>Category: {VSTInstr.instr_category}</h5>
 			<h5>Engine: {VSTInstr.engine}</h5>
