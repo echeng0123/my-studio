@@ -106,3 +106,9 @@ a {
     margin: 1rem;
     padding: 1rem;
 }
+
+/* GENRE JUNCTIONS */
+
+#genre-images{
+    max-width: 15dvw;
+}

@@ -263,3 +263,28 @@ export async function editGenre(genreObj, genreIdEP) {
 		console.error(error);
 	}
 }
+
+// -----GENRE JUNCTION API CALLS-------//
+
+// FETCH ALL GENRE JUNCTIONS
+export const fetchAllGenreJunc = async () => {
+	try {
+		const response = await fetch(`${API_URL}/genrejunctions`);
+		const GenreJunc = await response.json();
+		console.log("GenreJunc fetched", GenreJunc);
+		return GenreJunc;
+	} catch (error) {
+		console.error("Unable to fetch all genre junctions", error);
+	}
+};
+
+// FETCH SINGLE GENRE JUNC
+export const fetchSingleGenreJunc = async (genreJuncId) => {
+	try {
+		const response = await fetch(`${API_URL}/genrejunctions/${genreJuncId}`);
+		const user = await response.json();
+		return user;
+	} catch (error) {
+		console.error("Unable to fetch genre junction", error);
+	}
+};

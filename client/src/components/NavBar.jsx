@@ -10,6 +10,7 @@ export default function NavBar() {
 			<Link to="/physical">Physical Instruments</Link>
 			<Link to="/virtual">Virtual Instruments</Link>
 			<Link to="/genres">Genres</Link>
+			<Link to="/genrejunctions">Genre Junctions</Link>
 			{/* <Link to="/login">Login</Link>
 			<Link to="/logout">Logout</Link> */}
 		</div>
