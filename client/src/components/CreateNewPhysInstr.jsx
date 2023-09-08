@@ -15,7 +15,7 @@ export default function CreateNewPhysInstr() {
 	const [instrCategory, setInstrCategory] = useState("");
 	const [vstAvail, setVSTAvail] = useState(false);
 	const [instrTags, setInstrTags] = useState([]);
-	const [imageURL, setImageURL] = useState(cryingCat);
+	const [imageURL, setImageURL] = useState("");
 	const [userId, setUserId] = useState(1);
 
 	const navigate = useNavigate();

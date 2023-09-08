@@ -16,7 +16,7 @@ export default function CreateNewVSTInstr() {
 	const [brand, setBrand] = useState("");
 	const [physAvail, setphysAvail] = useState(false);
 	const [instrTags, setInstrTags] = useState([]);
-	const [imageURL, setImageURL] = useState(cryingCat);
+	const [imageURL, setImageURL] = useState("");
 	const [userId, setUserId] = useState(1);
 
 	const navigate = useNavigate();
@@ -27,6 +27,7 @@ export default function CreateNewVSTInstr() {
 
 	async function handleSubmit(event) {
 		event.preventDefault();
+
 		let instrData = {
 			instr_name: instrName,
 			instr_family: instrFamily,
