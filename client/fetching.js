@@ -8,6 +8,7 @@ const API_URL = `http://localhost:8080/api`;
 export const fetchAllUsers = async () => {
 	try {
 		const response = await fetch(`${API_URL}/users`);
+		// console.log("response in fetchallusers", response);
 		const users = await response.json();
 		console.log("users fetched", users);
 		return users;

@@ -47,6 +47,7 @@ export default function AllVSTInstr() {
 					<label>
 						Search:{" "}
 						<input
+							autoFocus
 							id="search-instr-bar"
 							type="text"
 							placeholder="Search instrument name, parameter, or tag"

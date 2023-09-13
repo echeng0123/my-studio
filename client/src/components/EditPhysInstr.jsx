@@ -56,6 +56,7 @@ export default function EditPhysInstr(PI_id) {
 					<h2 id="new-instr-header">Edit Physical Instrument</h2>
 					<form onSubmit={handleEdit} id="new-instr-form-container">
 						<TextField
+							autoFocus
 							id="NP-input-box"
 							label="Name"
 							value={instrName}

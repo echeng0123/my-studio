@@ -5,6 +5,7 @@ import NewGenreButton from "./NewGenreButton";
 import { useState, useEffect } from "react";
 import { fetchAllPhysInstr } from "../../fetching";
 import { fetchAllVSTInstr } from "../../fetching";
+import Register from "./Register";
 
 export default function Home() {
 	const [numPhys, setNumPhys] = useState("");
@@ -49,6 +50,9 @@ export default function Home() {
 				<NewPhysButton />
 				<NewVSTButton />
 				<NewGenreButton />
+			</div>
+			<div>
+				<Register />
 			</div>
 		</div>
 	);

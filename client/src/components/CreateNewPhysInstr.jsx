@@ -49,6 +49,7 @@ export default function CreateNewPhysInstr() {
 			<h2 id="new-instr-header">Add a New Physical Instrument</h2>
 			<form onSubmit={handleSubmit} id="new-instr-form-container">
 				<TextField
+					autoFocus
 					id="NP-input-box"
 					label="Name"
 					value={instrName}

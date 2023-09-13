@@ -6,6 +6,7 @@ import AllVSTInstr from "./AllVSTInstr";
 import Genres from "./Genres";
 import Home from "./Home";
 import GenreJunctions from "./GenreJunctions";
+import Register from "./Register";
 // import Login from "./Login";
 // import Logout from "./Logout";
 
@@ -18,6 +19,7 @@ export default function MainSection() {
 				<Route path="/virtual" element={<AllVSTInstr />} />
 				<Route path="/genres" element={<Genres />} />
 				<Route path="/genrejunctions" element={<GenreJunctions />} />
+				<Route path="/users" element={<Register />}></Route>
 				{/* <Route path="/login" element={<Login />} />
 				<Route path="/logout" element={<Logout />} /> */}
 			</Routes>
