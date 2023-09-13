@@ -24,6 +24,12 @@ router.use("/genres", require("./genres"));
 router.use("/genreJunctions", require("./genreJunctions"));
 
 // ROUTER: /api/register
-// router.use("/register", require("./register"));
+router.use("/register", require("./users"));
+
+// ROUTER: /api/login
+router.use("/login", require("./users"));
+
+// ROUTER: /api/logout
+router.use("/logout", require("./users"));
 
 module.exports = router;

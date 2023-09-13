@@ -15,6 +15,11 @@ app.use(morgan("dev"));
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
+// init cookie parser
+const cookieParser = require("cookie-parser");
+const { COOKIE_SECRET } = require("./secrets");
+app.use(cookieParser(COOKIE_SECRET));
+
 // init cors
 const cors = require("cors");
 app.use(cors());
@@ -25,11 +30,6 @@ app._router.get("/", (req, res) => {
 
 // router: /api
 app.use("/api", require("./api"));
-
-// init cookie parser
-const cookieParser = require("cookie-parser");
-const { COOKIE_SECRET } = require("./secrets");
-app.use(cookieParser(COOKIE_SECRET));
 
 const { authRequired } = require("./api/utils");
 
