@@ -26,6 +26,13 @@ app._router.get("/", (req, res) => {
 // router: /api
 app.use("/api", require("./api"));
 
+// init cookie parser
+const cookieParser = require("cookie-parser");
+const { COOKIE_SECRET } = require("./secrets");
+app.use(cookieParser(COOKIE_SECRET));
+
+const { authRequired } = require("./api/utils");
+
 app.listen(PORT, () => {
 	console.log(`Server listening on port ${PORT}`);
 });

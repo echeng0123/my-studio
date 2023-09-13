@@ -98,8 +98,8 @@ const genreJunctions = [
 
 // users
 const users = [
-	{ username: "gisula", password: "gisulaplays", name: "Gisula" },
-	{ username: "crab", password: "crab", name: "Crab" },
+	{ username: "gisula", password: "gisulaplays" },
+	{ username: "crab", password: "crab" },
 ];
 
 // export all

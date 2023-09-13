@@ -23,7 +23,7 @@ const createVSTInstr = async ({
                     brand,
                     phys_avail,
                     tags, image_URL, userId)
-                VALUES($1,$2,$3,$4,$5,$6,$7,$8)
+                VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)
                 RETURNING *;
             `,
 			[
@@ -79,16 +79,20 @@ const updateVSTInstr = async (VSTInstrId, body) => {
 		const { rows } = await client.query(
 			`
                 UPDATE VST_instr
-                SET instr_name = '${body.instr_name}', instr_family = '${body.instr_family}', instr_category = '${body.instr_category}',
-                engine = '${body.engine}',
-                brand = '${body.brand}',
-                phys_avail = ${body.phys_avail},
-                tags = '{${body.tags}}',
-                image_URL = '${body.image_URL}',
-                userId = '${body.userId}'
+                SET instr_name = $1, instr_family = $2, instr_category = $3,engine = $4, brand = $5, phys_avail = $6, tags = $7, image_URL = $8
                 WHERE VST_id = ${VSTInstrId}
                 RETURNING *;
-            `
+            `,
+			[
+				body.instr_name,
+				body.instr_family,
+				body.instr_category,
+				body.engine,
+				body.brand,
+				body.phys_avail,
+				body.tags,
+				body.image_URL,
+			]
 		);
 		console.log("rows", rows);
 		return rows;

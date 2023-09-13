@@ -81,16 +81,19 @@ const updatePhysInstr = async (PhysInstrId, body) => {
 		const { rows } = await client.query(
 			`
                 UPDATE phys_instr
-                SET instr_name = '${body.instr_name}', instr_family = '${body.instr_family}', instr_category = '${body.instr_category}',
-                art_type = '${body.art_type}',
-                VST_avail = ${body.VST_avail},
-                tags = '{${body.tags}}',
-                image_URL = '${body.image_URL}',
-                VST_id = '${body.VST_id}',
-                userId = '${body.userId}'
+                SET instr_name = $1, instr_family = $2, instr_category = $3, art_type = $4, VST_avail = $5, tags = $6, image_URL = $7
                 WHERE phys_id = ${PhysInstrId}
                 RETURNING *;
-            `
+            `,
+			[
+				body.instr_name,
+				body.instr_family,
+				body.instr_category,
+				body.art_type,
+				body.VST_avail,
+				body.tags,
+				body.image_URL,
+			]
 		);
 		return rows;
 	} catch (error) {

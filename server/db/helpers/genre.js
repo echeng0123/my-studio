@@ -56,15 +56,18 @@ const updateGenre = async (GenreId, body) => {
 		const { rows } = await client.query(
 			`
                 UPDATE genres
-                SET genre_name = '${body.genre_name}', 
-                bpm = ${body.bpm}, 
-                age_time = ${body.age_time},
-                tags = '{${body.tags}}',
-                physId = '${body.phys_id}',
-                vstId = '${body.VST_id}'
+                SET genre_name = $1, bpm = $2, age_time = $3, tags = $4, physId =$5, vstId =$6
                 WHERE genre_id = ${GenreId}
                 RETURNING *;
-            `
+            `,
+			[
+				body.genre_name,
+				body.bpm,
+				body.age_time,
+				body.tags,
+				body.physId,
+				body.vstId,
+			]
 		);
 		return rows;
 	} catch (error) {

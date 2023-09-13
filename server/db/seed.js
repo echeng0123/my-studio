@@ -57,8 +57,7 @@ const createTables = async () => {
         CREATE TABLE users (
             user_id SERIAL PRIMARY KEY,
             username varchar(30) UNIQUE NOT NULL,
-            password varchar(30) NOT NULL,
-            name varchar(255) NOT NULL
+            password TEXT NOT NULL
         );
         CREATE TABLE phys_instr (
             phys_id SERIAL PRIMARY KEY,
@@ -66,11 +65,11 @@ const createTables = async () => {
             instr_family varchar(255) NOT NULL,
             instr_category varchar(255) NOT NULL,
             art_type varchar(255) NOT NULL,
-            VST_avail BOOLEAN NOT NULL,
+            VST_avail BOOLEAN,
             tags TEXT[],
-            image_URL varchar(255),
-            VST_id INTEGER NOT NULL,
-            userId INTEGER REFERENCES users(user_id) NOT NULL
+            image_URL TEXT,
+            VST_id INTEGER, 
+            userId INTEGER
         );
         CREATE TABLE VST_instr (
             VST_id SERIAL PRIMARY KEY,
@@ -81,8 +80,8 @@ const createTables = async () => {
             brand varchar(255) NOT NULL,
             phys_avail BOOLEAN NOT NULL,
             tags TEXT[],
-            image_URL varchar(255),
-            userId INTEGER REFERENCES users(user_id) NOT NULL
+            image_URL TEXT,
+            userId INTEGER 
         );
         CREATE TABLE genres (
             genre_id SERIAL PRIMARY KEY,

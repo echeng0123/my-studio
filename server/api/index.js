@@ -23,4 +23,7 @@ router.use("/genres", require("./genres"));
 // ROUTER: /api/genresJunctions
 router.use("/genreJunctions", require("./genreJunctions"));
 
+// ROUTER: /api/register
+// router.use("/register", require("./register"));
+
 module.exports = router;
