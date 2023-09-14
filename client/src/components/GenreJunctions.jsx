@@ -120,7 +120,7 @@ export default function GenreJunctions({ token }) {
 			<h1 id="all-phys-instr-header">Genre Junctions</h1>
 			<h3>Please login to view genre junctions associated with your studio.</h3>
 
-			{token ? (
+			{localStorage.getItem("token") ? (
 				<div>
 					<h3>Search instruments for corresponding genres</h3>
 					<div id="search-phys-instr">

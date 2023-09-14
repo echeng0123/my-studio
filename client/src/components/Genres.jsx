@@ -41,7 +41,7 @@ export default function AllGenres({ token }) {
 			<div>
 				<h3>Please login to view genres associated with your studio.</h3>
 			</div>
-			{token ? (
+			{localStorage.getItem("token") ? (
 				<div>
 					<div id="search-phys-instr">
 						<label>

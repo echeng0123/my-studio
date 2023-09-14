@@ -40,7 +40,7 @@ export default function Home({ token, setToken, currentUser, setCurrentUser }) {
 
 	return (
 		<div id="home-container">
-			{!token ? (
+			{!localStorage.getItem("token") ? (
 				<div id="home-content">
 					<h1>WELCOME TO THE STUDIO</h1>
 					<div id="home-box">
@@ -60,7 +60,7 @@ export default function Home({ token, setToken, currentUser, setCurrentUser }) {
 			) : (
 				<></>
 			)}
-			{token ? (
+			{localStorage.getItem("token") ? (
 				<div>
 					<div id="home-header">
 						<h1>Welcome!</h1>

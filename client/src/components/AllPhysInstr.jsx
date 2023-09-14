@@ -48,7 +48,7 @@ export default function AllPhysInstr({ token }) {
 				</div>
 
 				{/* Only render the instruments table & create new instruments panel if user is logged in */}
-				{token ? (
+				{localStorage.getItem("token") ? (
 					<div>
 						<div id="search-phys-instr">
 							<label id="search-label">

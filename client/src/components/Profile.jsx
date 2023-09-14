@@ -6,6 +6,7 @@ import {
 	fetchAllPhysInstr,
 	fetchAllVSTInstr,
 	fetchAllGenres,
+	fetchUserProfile,
 } from "../../fetching";
 
 export default function Profile({
@@ -31,13 +32,17 @@ export default function Profile({
 	const [isOpenVST, setIsOpenVST] = useState(false);
 	const [isOpenGenre, setIsOpenGenre] = useState(false);
 
+	const usernameName = localStorage.getItem("currentUser");
+	// console.log("username IS NOW ", usernameName);
+
 	// console.log("currentUser in Profile ", currentUser);
 
 	// grab user info
 	useEffect(() => {
 		async function getUserProfile() {
-			setUserId(currentUser.user_id);
-			setUsername(currentUser.username);
+			// setUserId(currentUser.user_id);
+			setUsername(currentUser);
+			// console.log("username IS NOW ", username);
 		}
 		getUserProfile();
 	}, []);
@@ -178,10 +183,10 @@ export default function Profile({
 
 	return (
 		<div>
-			{token ? (
+			{localStorage.getItem("token") ? (
 				<div>
-					<h1>Welcome, {titleCase(username)}</h1>
-					<h3>Your user id is: {userId}</h3>
+					<h1>Welcome</h1>
+					{/* <h3>Your user id is: {userId}</h3> */}
 					<div id="phys-instr-panel">
 						<h3>
 							You have {physInstrList.length} physical instruments in your
@@ -246,7 +251,7 @@ export default function Profile({
 					</div>
 				</div>
 			) : (
-				<></>
+				<h2>Please sign in to view profile.</h2>
 			)}
 		</div>
 	);

@@ -8,7 +8,13 @@ export default function Logout({ token, setToken }) {
 	const nav = useNavigate();
 
 	useEffect(() => {
+		// async function logoutFunction() {
+		// 	await
+
+		// }
+		// logoutFunction();
 		logout();
+		localStorage.removeItem("token");
 		setToken(null);
 		nav("/home");
 	}, []);

@@ -21,7 +21,7 @@ export default function Login({
 		try {
 			const register = await login(username, password);
 			setToken(register.token);
-			setCurrentUser(register.user);
+			setCurrentUser(register.user.username);
 			console.log("register in handle submit", register);
 			nav("/profile");
 		} catch (error) {
@@ -47,6 +47,7 @@ export default function Login({
 						<label>Password: {""}</label>
 						<input
 							id="password"
+							type="password"
 							placeholder="enter password"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}

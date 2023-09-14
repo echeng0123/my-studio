@@ -45,7 +45,7 @@ export default function AllVSTInstr({ token }) {
 			<div>
 				<h3>Please login to view virtual instruments in your studio.</h3>
 			</div>
-			{token ? (
+			{localStorage.getItem("token") ? (
 				<div>
 					<div id="all-phys-instr-header">
 						<h2>ALL VIRTUAL INSTRUMENTS</h2>

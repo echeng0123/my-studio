@@ -11,7 +11,7 @@ export default function NavBar({ token }) {
 			<Link to="/genres">Genres</Link>
 			<Link to="/genrejunctions">Genre Junctions</Link>
 
-			{token ? (
+			{localStorage.getItem("token") ? (
 				<>
 					<Link to="/profile">Profile</Link>
 					<Link to="/logout">Logout</Link>
