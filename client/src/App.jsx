@@ -2,11 +2,15 @@ import "./App.css";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
 import MainSection from "./components/MainSection";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
 	const [token, setToken] = useState(null);
 	const [currentUser, setCurrentUser] = useState([]);
+
+	useEffect(() => {
+		setToken(localStorage.getItem("token"));
+	}, []);
 
 	return (
 		<>

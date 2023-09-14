@@ -33,16 +33,11 @@ export default function Profile({
 	const [isOpenGenre, setIsOpenGenre] = useState(false);
 
 	const usernameName = localStorage.getItem("currentUser");
-	// console.log("username IS NOW ", usernameName);
-
-	// console.log("currentUser in Profile ", currentUser);
 
 	// grab user info
 	useEffect(() => {
 		async function getUserProfile() {
-			// setUserId(currentUser.user_id);
 			setUsername(currentUser);
-			// console.log("username IS NOW ", username);
 		}
 		getUserProfile();
 	}, []);
@@ -183,7 +178,7 @@ export default function Profile({
 
 	return (
 		<div>
-			{localStorage.getItem("token") ? (
+			{token ? (
 				<div>
 					<h1>Welcome</h1>
 					{/* <h3>Your user id is: {userId}</h3> */}

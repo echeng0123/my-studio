@@ -4,12 +4,6 @@ import { Link } from "react-router-dom";
 import { logout } from "../../fetching";
 
 export default function NavBar({ token, setToken }) {
-	// function handleLogout() {
-	// 	logout();
-	// 	setToken(null);
-	// 	localStorage.removeItem("token");
-	// }
-
 	if (localStorage.getItem("token")) {
 		setToken(localStorage.getItem("token"));
 	}
@@ -25,7 +19,6 @@ export default function NavBar({ token, setToken }) {
 			{token ? (
 				<>
 					<Link to="/profile">Profile</Link>
-					{/* <button onClick={handleLogout}>Logout</button> */}
 					<Link to="/logout">Logout</Link>
 				</>
 			) : (
