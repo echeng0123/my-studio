@@ -21,7 +21,15 @@ export default function Profile({
 	const [genresList, setGenresList] = useState([]);
 	const [physInstrListNames, setPhysInstrListNames] = useState([]);
 	const [physInstrListNames2, setPhysInstrListNames2] = useState([]);
+	const [VSTListNames, setVSTListNames] = useState([]);
+	const [VSTListNames2, setVSTListNames2] = useState([]);
+	const [genreListNames, setGenreListNames] = useState([]);
+	const [genreListNames2, setGenreListNames2] = useState([]);
+
+	// Button state handling
 	const [isOpenPhys, setIsOpenPhys] = useState(false);
+	const [isOpenVST, setIsOpenVST] = useState(false);
+	const [isOpenGenre, setIsOpenGenre] = useState(false);
 
 	// console.log("currentUser in Profile ", currentUser);
 
@@ -84,6 +92,22 @@ export default function Profile({
 		getAllArrayNames();
 	}, [physInstrList]);
 
+	// grabs VST instr names
+	useEffect(() => {
+		async function getAllArrayNames() {
+			await arrayNamesVST(VSTList);
+		}
+		getAllArrayNames();
+	}, [VSTList]);
+
+	// grabs genre names
+	useEffect(() => {
+		async function getAllArrayNames() {
+			await arrayNamesGenre(genresList);
+		}
+		getAllArrayNames();
+	}, [genresList]);
+
 	// converts string to title case/sentence case for later display in rendering
 	function titleCase(str) {
 		str = str.toLowerCase().split(" ");
@@ -93,16 +117,14 @@ export default function Profile({
 		return str.join(" ");
 	}
 
+	// pushes physical instrument names to array
 	async function arrayNamesPhys(physInstrList) {
-		console.log("instrList at array Names", physInstrList);
-
 		setPhysInstrListNames2([]);
 
 		try {
 			for (let i = 0; i < physInstrList.length; i++) {
 				physInstrListNames2.push(physInstrList[i].instr_name);
 			}
-			console.log("physInstrListNames", physInstrListNames2);
 			setPhysInstrListNames(physInstrListNames2);
 			return physInstrListNames;
 		} catch (error) {
@@ -111,26 +133,47 @@ export default function Profile({
 		return physInstrListNames;
 	}
 
+	// pushes virtual instrument names to array
 	async function arrayNamesVST(VSTList) {
-		console.log("List at array Names", VSTList);
-
 		setVSTListNames2([]);
 
 		try {
 			for (let i = 0; i < VSTList.length; i++) {
-				VSTListNames2.push(VSTList[i]._name);
+				VSTListNames2.push(VSTList[i].instr_name);
 			}
-			console.log("VSTListNames", VSTListNames2);
 			setVSTListNames(VSTListNames2);
 			return VSTListNames;
 		} catch (error) {
-			console.error("No virtual uments grabbed.");
+			console.error("No virtual instruments grabbed.");
 		}
 		return VSTListNames;
 	}
 
+	// pushes genre names to array
+	async function arrayNamesGenre(GenreList) {
+		setGenreListNames2([]);
+
+		try {
+			for (let i = 0; i < GenreList.length; i++) {
+				genreListNames2.push(GenreList[i].genre_name);
+			}
+			setGenreListNames(genreListNames2);
+			return genreListNames;
+		} catch (error) {
+			console.error("No virtual instruments grabbed.");
+		}
+		return genreListNames;
+	}
+
+	// handling button behavior allowing for different buttons to be open at different times
 	function handleClickPhys() {
 		setIsOpenPhys(!isOpenPhys);
+	}
+	function handleClickVST() {
+		setIsOpenVST(!isOpenVST);
+	}
+	function handleClickGenre() {
+		setIsOpenGenre(!isOpenGenre);
 	}
 
 	return (
@@ -164,12 +207,42 @@ export default function Profile({
 						<h3>
 							You have {VSTList.length} virtual instruments in your studio.
 						</h3>
+						<button onClick={handleClickVST}>
+							Expand virtual instruments list
+						</button>
+						{isOpenVST && (
+							<div>
+								{VSTListNames.map((VSTName) => {
+									return (
+										// eslint-disable-next-line react/jsx-key
+										<div>
+											<p>{VSTName}</p>
+										</div>
+									);
+								})}
+							</div>
+						)}
 					</div>
 					<div id="phys-instr-panel">
 						<h3>
 							You have {genresList.length} genre{genresList > 1 ? "s" : <></>}{" "}
 							associated with your studio.
 						</h3>
+						<button onClick={handleClickGenre}>
+							Expand virtual instruments list
+						</button>
+						{isOpenGenre && (
+							<div>
+								{genreListNames.map((GenreName) => {
+									return (
+										// eslint-disable-next-line react/jsx-key
+										<div>
+											<p>{GenreName}</p>
+										</div>
+									);
+								})}
+							</div>
+						)}
 					</div>
 				</div>
 			) : (
