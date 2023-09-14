@@ -1,8 +1,19 @@
 // This component is the navigation bar for the page
 
 import { Link } from "react-router-dom";
+import { logout } from "../../fetching";
 
-export default function NavBar({ token }) {
+export default function NavBar({ token, setToken }) {
+	// function handleLogout() {
+	// 	logout();
+	// 	setToken(null);
+	// 	localStorage.removeItem("token");
+	// }
+
+	if (localStorage.getItem("token")) {
+		setToken(localStorage.getItem("token"));
+	}
+
 	return (
 		<div id="nav-bar-section">
 			<Link to="/home">Home</Link>
@@ -11,9 +22,10 @@ export default function NavBar({ token }) {
 			<Link to="/genres">Genres</Link>
 			<Link to="/genrejunctions">Genre Junctions</Link>
 
-			{localStorage.getItem("token") ? (
+			{token ? (
 				<>
 					<Link to="/profile">Profile</Link>
+					{/* <button onClick={handleLogout}>Logout</button> */}
 					<Link to="/logout">Logout</Link>
 				</>
 			) : (

@@ -21,6 +21,8 @@ export default function Login({
 		try {
 			const register = await login(username, password);
 			setToken(register.token);
+			localStorage.setItem("token", token);
+			// localStorage.setItem("currentUser", currentUser);
 			setCurrentUser(register.user.username);
 			console.log("register in handle submit", register);
 			nav("/profile");

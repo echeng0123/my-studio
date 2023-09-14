@@ -8,14 +8,11 @@ function App() {
 	const [token, setToken] = useState(null);
 	const [currentUser, setCurrentUser] = useState([]);
 
-	localStorage.setItem("token", token);
-	localStorage.setItem("currentUser", currentUser);
-
 	return (
 		<>
 			<div id="app-section">
 				<Header />
-				<NavBar token={token} />
+				<NavBar token={token} setToken={setToken} />
 				<MainSection
 					token={token}
 					setToken={setToken}
