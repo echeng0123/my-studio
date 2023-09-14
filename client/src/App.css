@@ -6,8 +6,8 @@
 }
 
 a {
-    padding: 1rem;
-    margin: 1rem;
+    padding: 0 1rem;
+    margin: 0.5rem 1rem;
     font-weight: 500;
     font-size: 2rem;
     font-family: 'Bungee', cursive;
@@ -23,7 +23,7 @@ padding: 0 1.1rem;
 
 #app-section{
     background: url("../public/aperture-vintage.jpg") fixed;
-    background-size: auto 100%;
+    background-size: cover;
     box-shadow: 10px 5px 20px black;
     margin: 1rem;
     padding: 1rem;
@@ -36,9 +36,11 @@ padding: 0 1.1rem;
 }
 
 #nav-bar-section{
-    margin: 1rem;
-    padding: 1rem;
+    margin: 0rem;
+    padding: 0 1rem;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 #main-header{
@@ -95,6 +97,10 @@ padding: 0 1.1rem;
     font-size: 2.1rem;
 }
 
+#home-content{
+    font-size: 2rem;
+}
+
 #add-buttons-container{
     padding: 1rem;
     margin: 1rem;
@@ -104,6 +110,30 @@ padding: 0 1.1rem;
     border-radius: 20px;
     font-size: 1.5rem;
     font-family: 'Josefin Sans', sans-serif;
+}
+
+#create-user-container {
+    border: 1px solid red;
+    margin: 1rem;
+    padding: 2rem;
+    max-width: 30dvw;
+}
+
+#signin-container{
+    border: 1px solid blue;
+    margin: 1rem;
+    padding: 2rem;
+    max-width: 30dvw;
+    font-size: 2rem;
+}
+
+#login-container{
+    display: inline-block;
+}
+
+#home-box{
+    display: flex;
+    place-content: center;
 }
 
 /* ------------- */
@@ -275,4 +305,11 @@ padding: 0 1.1rem;
 }
 #new-instr-form-container button:hover{
     background-color: rgb(235, 87, 87);
+}
+
+/* PROFILE */
+
+#phys-instr-panel{
+    margin: 1rem;
+    padding: 0.2rem;
 }

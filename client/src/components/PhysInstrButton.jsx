@@ -3,7 +3,7 @@
 import { useState } from "react";
 import SinglePhysInstr from "./SinglePhysInstr";
 
-export default function PhysInstrButton({ physInstrAP, PI_id }) {
+export default function PhysInstrButton({ physInstrAP, PI_id, token }) {
 	const [isOpen, setIsOpen] = useState(false);
 	const PIBid = PI_id;
 	const physInstrPIB = physInstrAP;
@@ -32,6 +32,7 @@ export default function PhysInstrButton({ physInstrAP, PI_id }) {
 							key={PIBid}
 							PIBid={PIBid}
 							physInstrPIB={physInstrPIB}
+							token={token}
 						/>
 					)}
 				</div>

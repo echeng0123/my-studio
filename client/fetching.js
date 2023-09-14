@@ -28,6 +28,45 @@ export const fetchUserProfile = async (userId) => {
 	}
 };
 
+// LOGIN
+export const login = async (username, password) => {
+	try {
+		const response = await fetch(`${API_URL}/users/login`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				username: username,
+				password: password,
+			}),
+		});
+		const result = await response.json();
+		// console.log("result from login fn", result);
+		return result;
+	} catch (err) {
+		console.error(err);
+	}
+};
+
+// LOGOUT
+export const logout = async () => {
+	try {
+		const response = await fetch(`${API_URL}/users/logout`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		console.log("response from logout ", response);
+		const result = await response.json();
+		console.log("result from logout", result);
+		return result;
+	} catch (err) {
+		console.error(err);
+	}
+};
+
 // -----PHYSICAL INSTRUMENT API CALLS-------//
 
 // FETCH ALL PHYSICAL INSTRUMENTS

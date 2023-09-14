@@ -1,9 +1,11 @@
 // This component renders a single physical instrument
 
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { fetchSinglePhysInstr } from "../../fetching";
 
-export default function SinglePhysInstr({ physInstrPIB, PIBid }) {
+export default function SinglePhysInstr({ physInstrPIB, PIBid, token }) {
 	const [physInstr, setPhysInstr] = useState({});
 	const SPI_id = PIBid;
 	const physInstrSPI = physInstrPIB;
@@ -11,6 +13,8 @@ export default function SinglePhysInstr({ physInstrPIB, PIBid }) {
 		"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F1%2F14%2FNo_Image_Available.jpg%3F20200913095930&f=1&nofb=1&ipt=e72482b3479441692391e6c82472341ed8951b0ac682b03a5b17762a465b1d0d&ipo=images";
 	const cryingCat =
 		"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F0e%2Ffd%2Fc3%2F0efdc3f87bb83cf7bcb7d7e9de67c359.jpg&f=1&nofb=1&ipt=472ba29f7ada52b4bf57b85dfe595a7ef880731b1cb63103265161745a4c2132&ipo=images";
+
+	const nav = useNavigate();
 
 	useEffect(() => {
 		async function getSinglePhysInstr() {
@@ -25,7 +29,12 @@ export default function SinglePhysInstr({ physInstrPIB, PIBid }) {
 	}, []);
 
 	return (
-		<div id="card-info">
+		<div
+			id="card-info"
+			onClick={() =>
+				nav(`/phys/${physInstr.id}`, { state: { physInstrSPI, token } })
+			}
+		>
 			<h5>Category: {physInstr.instr_category}</h5>
 			<h5>Family: {physInstr.instr_family}</h5>
 			<h5>Articulation Type: {physInstr.art_type}</h5>

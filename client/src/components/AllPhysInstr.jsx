@@ -7,7 +7,7 @@ import CreateNewPhysInstr from "./CreateNewPhysInstr";
 import DeletePhysInstr from "./DeletePhysInstr";
 import EditPhysInstr from "./EditPhysInstr";
 
-export default function AllPhysInstr() {
+export default function AllPhysInstr({ token }) {
 	const [physInstrs, setPhysInstrs] = useState([]);
 	const [searchParam, setSearchParam] = useState("");
 	const [instrId, setInstrId] = useState(null);
@@ -43,47 +43,59 @@ export default function AllPhysInstr() {
 				<div id="all-phys-instr-header">
 					<h2>ALL PHYSICAL INSTRUMENTS</h2>
 				</div>
-				<div id="search-phys-instr">
-					<label id="search-label">
-						Search:{" "}
-						<input
-							autoFocus
-							id="search-instr-bar"
-							type="text"
-							placeholder="Search instrument name, parameter, or tag"
-							onChange={(event) =>
-								setSearchParam(event.target.value.toLowerCase())
-							}
-						/>
-					</label>
+				<div>
+					<h3>Please login to view physical instruments in your studio.</h3>
 				</div>
-				<div id="api-container">
-					<div id="create-new-instr-container">
-						<CreateNewPhysInstr />
-					</div>
-					<div id="all-phys-instr-gallery">
-						{physInstrToDisplay.map((physInstr) => {
-							const PI_id = physInstr.phys_id;
-							const physInstrAP = physInstr;
-							return (
-								// eslint-disable-next-line react/jsx-key
-								<div id="main-phys-instr-container">
-									<div>
-										<div id="phys-instr-card">
-											<PhysInstrButton
-												key={PI_id}
-												PI_id={PI_id}
-												physInstrAP={physInstrAP}
-											/>
-											<EditPhysInstr PI_id={PI_id} />
-											<DeletePhysInstr physId={PI_id} />
+
+				{/* Only render the instruments table & create new instruments panel if user is logged in */}
+				{token ? (
+					<div>
+						<div id="search-phys-instr">
+							<label id="search-label">
+								Search:{" "}
+								<input
+									autoFocus
+									id="search-instr-bar"
+									type="text"
+									placeholder="Search instrument name, parameter, or tag"
+									onChange={(event) =>
+										setSearchParam(event.target.value.toLowerCase())
+									}
+								/>
+							</label>
+						</div>
+						<div id="api-container">
+							<div id="create-new-instr-container">
+								<CreateNewPhysInstr token={token} />
+							</div>
+							<div id="all-phys-instr-gallery">
+								{physInstrToDisplay.map((physInstr) => {
+									const PI_id = physInstr.phys_id;
+									const physInstrAP = physInstr;
+									return (
+										// eslint-disable-next-line react/jsx-key
+										<div id="main-phys-instr-container">
+											<div>
+												<div id="phys-instr-card">
+													<PhysInstrButton
+														key={PI_id}
+														PI_id={PI_id}
+														physInstrAP={physInstrAP}
+														token={token}
+													/>
+													<EditPhysInstr PI_id={PI_id} />
+													<DeletePhysInstr physId={PI_id} />
+												</div>
+											</div>
 										</div>
-									</div>
-								</div>
-							);
-						})}
+									);
+								})}
+							</div>
+						</div>
 					</div>
-				</div>
+				) : (
+					<></>
+				)}
 			</div>
 		</div>
 	);

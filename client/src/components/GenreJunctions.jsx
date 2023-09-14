@@ -7,7 +7,7 @@ import {
 	fetchAllVSTInstr,
 } from "../../fetching";
 
-export default function GenreJunctions() {
+export default function GenreJunctions({ token }) {
 	const [genreJuncs, setGenreJuncs] = useState([]);
 	const [physInstrs, setPhysInstrs] = useState([]);
 	const [VSTInstrs, setVSTInstrs] = useState([]);
@@ -118,59 +118,67 @@ export default function GenreJunctions() {
 	return (
 		<div>
 			<h1 id="all-phys-instr-header">Genre Junctions</h1>
-			<h3>Search instruments for corresponding genres</h3>
-			<div id="search-phys-instr">
-				<label id="search-label">
-					Search Physical Instruments:{" "}
-					<input
-						id="search-instr-bar"
-						type="text"
-						placeholder="Search instrument name, parameter, or tag"
-						onChange={(event) =>
-							setSearchParam(event.target.value.toLowerCase())
-						}
-					/>
-				</label>
-			</div>
-			<div id="search-phys-instr">
-				<label id="search-label">
-					Search Virtual Instruments:{" "}
-					<input
-						id="search-instr-bar"
-						type="text"
-						placeholder="Search instrument name, parameter, or tag"
-						onChange={(event) =>
-							setSearchParam(event.target.value.toLowerCase())
-						}
-					/>
-				</label>
-			</div>
-			<div id="genre-junc-card">
-				{genreJuncToDisplay.map((junc) => {
-					return (
-						// eslint-disable-next-line react/jsx-key
-						<div id="physical-juncs">
-							{/* <h3>Genre Junction id: {junc.genrejunc_id}</h3> */}
+			<h3>Please login to view genre junctions associated with your studio.</h3>
 
-							<p>Physical Instrument(s): {titleCase(junc.instr_name)}</p>
-							<img src={junc.image_url} alt="" id="genre-images" />
-						</div>
-					);
-				})}
-			</div>
-			<div id="vst-juncs-container">
-				{genreJuncToDisplay2.map((junc) => {
-					return (
-						// eslint-disable-next-line react/jsx-key
-						<div id="physical-juncs">
-							{/* <h3>Genre Junction id: {junc.genrejunc_id}</h3> */}
+			{token ? (
+				<div>
+					<h3>Search instruments for corresponding genres</h3>
+					<div id="search-phys-instr">
+						<label id="search-label">
+							Search Physical Instruments:{" "}
+							<input
+								id="search-instr-bar"
+								type="text"
+								placeholder="Search instrument name, parameter, or tag"
+								onChange={(event) =>
+									setSearchParam(event.target.value.toLowerCase())
+								}
+							/>
+						</label>
+					</div>
+					<div id="search-phys-instr">
+						<label id="search-label">
+							Search Virtual Instruments:{" "}
+							<input
+								id="search-instr-bar"
+								type="text"
+								placeholder="Search instrument name, parameter, or tag"
+								onChange={(event) =>
+									setSearchParam(event.target.value.toLowerCase())
+								}
+							/>
+						</label>
+					</div>
+					<div id="genre-junc-card">
+						{genreJuncToDisplay.map((junc) => {
+							return (
+								// eslint-disable-next-line react/jsx-key
+								<div id="physical-juncs">
+									{/* <h3>Genre Junction id: {junc.genrejunc_id}</h3> */}
 
-							<p>Virtual Instrument(s): {titleCase(junc.instr_name)}</p>
-							<img src={junc.image_url} alt="" id="genre-images" />
-						</div>
-					);
-				})}
-			</div>
+									<p>Physical Instrument(s): {titleCase(junc.instr_name)}</p>
+									<img src={junc.image_url} alt="" id="genre-images" />
+								</div>
+							);
+						})}
+					</div>
+					<div id="vst-juncs-container">
+						{genreJuncToDisplay2.map((junc) => {
+							return (
+								// eslint-disable-next-line react/jsx-key
+								<div id="physical-juncs">
+									{/* <h3>Genre Junction id: {junc.genrejunc_id}</h3> */}
+
+									<p>Virtual Instrument(s): {titleCase(junc.instr_name)}</p>
+									<img src={junc.image_url} alt="" id="genre-images" />
+								</div>
+							);
+						})}
+					</div>
+				</div>
+			) : (
+				<></>
+			)}
 		</div>
 	);
 }

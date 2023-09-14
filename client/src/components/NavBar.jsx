@@ -2,7 +2,7 @@
 
 import { Link } from "react-router-dom";
 
-export default function NavBar() {
+export default function NavBar({ token }) {
 	return (
 		<div id="nav-bar-section">
 			<Link to="/home">Home</Link>
@@ -10,8 +10,15 @@ export default function NavBar() {
 			<Link to="/virtual">Virtual Instruments</Link>
 			<Link to="/genres">Genres</Link>
 			<Link to="/genrejunctions">Genre Junctions</Link>
-			{/* <Link to="/login">Login</Link>
-			<Link to="/logout">Logout</Link> */}
+
+			{token ? (
+				<>
+					<Link to="/profile">Profile</Link>
+					<Link to="/logout">Logout</Link>
+				</>
+			) : (
+				<Link to="/login">Login</Link>
+			)}
 		</div>
 	);
 }

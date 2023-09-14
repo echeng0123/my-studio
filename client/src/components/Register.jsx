@@ -1,6 +1,7 @@
 // This function allows a user to register for the site and create a new account
 
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { fetchAllUsers } from "../../fetching";
 
 const API_URL = `http://localhost:8080/api`;
@@ -12,7 +13,7 @@ export default function Register() {
 	const [successMessage, setSuccessMessage] = useState(null);
 	const [error, setError] = useState(null);
 
-	// const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	const userObj = {
 		username: username,
@@ -30,16 +31,14 @@ export default function Register() {
 					body: JSON.stringify(userObj),
 					headers: { "content-type": "application/json" },
 				});
-				const result = await response.json();
-				console.log("result from handleSubmit", result);
-				// setToken(result.data.token);
+				await response.json();
 				setSuccessMessage("Sign up successful");
-				// navigate("/login");
+				alert("Sign up successful!");
+				navigate("/profile");
 			} else {
 				alert("Username too short. Please enter at least 3 characters.");
 				setUsername("");
 				setPassword("");
-				// setToken("");
 			}
 		} catch (error) {
 			setError(error.message);
@@ -49,10 +48,8 @@ export default function Register() {
 	useEffect(() => {
 		async function getAllUsers() {
 			const APIResponse = await fetchAllUsers();
-			// console.log("APIResponse in Register", APIResponse);
 			if (APIResponse) {
 				setUsers(APIResponse);
-				console.log("users in GAU", users);
 			} else {
 				console.error("Problem fetching all users");
 			}
@@ -62,28 +59,15 @@ export default function Register() {
 	return (
 		<div>
 			<div>
-				<h1>hello</h1>
-				{users.map((user) => {
-					return (
-						<>
-							<div>
-								<p>username: {user.username}</p>
-							</div>
-						</>
-					);
-				})}
-			</div>
-			<div>
-				<div id="signin-container">
-					<h2 id="login-text">Sign up</h2>
-					{/* {successMessage && <h2>{successMessage}</h2>} */}
-					{/* {error && <p>{error}</p>} */}
+				<div id="create-user-container">
+					<h1>Sign Up</h1>
 					<form onSubmit={handleSubmit}>
 						<div id="login-text">
 							<label>
 								Username:{" "}
 								<input
 									id="login-input"
+									placeholder="enter username"
 									value={username}
 									onChange={(e) => setUsername(e.target.value)}
 								/>
@@ -93,6 +77,7 @@ export default function Register() {
 								Password:{" "}
 								<input
 									id="login-input"
+									placeholder="enter password"
 									value={password}
 									onChange={(e) => setPassword(e.target.value)}
 								/>
@@ -106,3 +91,14 @@ export default function Register() {
 		</div>
 	);
 }
+
+// old code rendering users list
+// {users.map((user) => {
+//     return (
+//         <>
+//             <div>
+//                 <p>username: {user.username}</p>
+//             </div>
+//         </>
+//     );
+// })}
